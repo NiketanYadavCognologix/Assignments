@@ -20,7 +20,8 @@ public class EmployeeManagement {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("1.Add \n2.Delete \n3.Show pay slip \n4.Show all \n5.Exit");
 		
-		EmployeeDB database=new EmployeeDB();
+//		EmployeeDB database=new EmployeeDB();
+		EmployeeDBForSet database=new EmployeeDBForSet();
 		String continueStatus=null;
 		
 		
@@ -53,7 +54,11 @@ public class EmployeeManagement {
 				System.out.println(paySlip);
 				break;
 			case 4: 
-				database.listAll();
+				Employee[] results= database.listAll();
+				for (Employee employee : results) 
+				{
+					System.out.println(employee);
+				}
 				break;
 
 			case 5 :
@@ -64,7 +69,7 @@ public class EmployeeManagement {
 				System.out.println("Error : Enter correct option");
 			}
 			
-			System.out.print("Do you want to cotinue press(y/n) ");
+			System.out.print("Do you want to cotinue press(y-yes/n-any character) : ");
 			try {
 				continueStatus=sc.next();
 			}catch (Exception e) {

@@ -3,6 +3,7 @@ package com.cognologix.Day2.Part1.Q1FirstSarver;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,6 +31,7 @@ public class QFirstUbuntu {
 	
 	static List<QFirstSarver> list=new ArrayList<QFirstSarver>();
 	static Set<String> softwareNameSet=new TreeSet<String>();
+	static List<String> softwares=new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		String [] inputArray= {
@@ -67,50 +69,47 @@ public class QFirstUbuntu {
 		
 		for (String software : softwareNameSet) 
 		{
-			int maxVersion=0;
+			String maxVersion="";
+			QFirstSarver maxVersionSoftware=null;
 			for (int i = 0; i < inputArray.length; i++) 
 			{
 				if(list.get(i).getSoftwreName().equals(software))
 				{
 					for (int j = 0; j < inputArray.length; j++) {
 						
-						if(list.get(i).getVersion().compareTo())
+						if(list.get(i).getVersion().compareTo(maxVersion)>0)
+						{
+							maxVersion=list.get(i).getVersion();
+							maxVersionSoftware=list.get(i);
+						}
 					}
 				}
 			}
+			
+			softwares.add(maxVersionSoftware.getSoftwreName());
+			
+//			System.out.println(maxVersionSoftware.getSoftwreName()+" ---> "+maxVersion);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		String technology="";
-		String repeatingTechnologyMoreThanTwo="";
-		for (int i = 0; i < givenArray.length; i++) {
-			
+		for (String oneSoftware : softwares) {
 			int cnt=0;
-
-			for (int j = 0; j < givenArray[0].length; j++) {
-					technology=givenArray[i][2];
-					for (int k = 0; k < givenArray.length; k++) {
-						if(technology.equals(givenArray[k][j]) && cnt>1)
-						{
-							technology=givenArray[k][j];
-							break;
-						}
-						else
-							cnt++;
-					}
-			
+			String result="";
+			for (int i = 0; i < inputArray.length; i++) 
+			{
+				if(list.get(i).getSoftwreName().equals(oneSoftware) && cnt<=1)
+				{
+					cnt++;
+				}
+				else if(list.get(i).getSoftwreName().equals(oneSoftware))
+				{
+					result=oneSoftware;
+				}
 			}
+			
+			System.out.print(result+" ");
 		}
-		System.out.println(technology);
-		*/
+
 	}
 
 }
+

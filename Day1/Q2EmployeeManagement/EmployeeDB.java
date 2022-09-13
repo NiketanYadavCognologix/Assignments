@@ -44,7 +44,7 @@ class EmployeeDB{
 		for (int i = 0; i < employeeArryay.length; i++) 
 		{
 			employeeArryay[i]=employeeArrayList.get(i);
-			System.out.println(employeeArryay[i].getEmployeeDetails());
+//			System.out.println(employeeArryay[i].getEmployeeDetails());			//we can print on EmployeeManagement Also
 		}
 		
 		return employeeArryay;
