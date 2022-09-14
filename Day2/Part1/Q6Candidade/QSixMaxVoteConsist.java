@@ -1,8 +1,7 @@
-package com.cognologix.Day2.Part1.QSixCandidade;
+package com.cognologix.Day2.Part1.Q6Candidade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,6 +41,59 @@ public class QSixMaxVoteConsist {
 				"32, Aarti Patil, Baner, 351",
 				"34, Swaran Bijur, Baner, 352"};
 		
+		/*Input reading method*/
+		inputReading(input);
+
+		/*Getting unique consistency names in set*/
+		setOfConsistencies();
+		
+		/*Getting final result*/
+		finalResult();		
+	}
+
+	private static void finalResult() {
+		for (String consist : consistuncies) 
+		{
+			int maxVotes=0;
+			QSixCandidade maxVotesGetedCandidade=null;
+			
+			for (int i = 0; i < arrayList.size(); i++) {
+
+				int votes=arrayList.get(i).getVotes();
+				if(arrayList.get(i).getConstituency().equals(consist))
+				{
+					if(maxVotes<votes)
+					{
+						maxVotes=votes;
+						maxVotesGetedCandidade=arrayList.get(i);
+					}
+				}
+			}
+			map.put(maxVotesGetedCandidade.getConstituency(), maxVotesGetedCandidade.getCandidateID());
+		}
+		System.out.println(map);
+		
+	}
+
+	private static void setOfConsistencies() {
+		
+		for (QSixCandidade oneCandidade : arrayList) {
+			consistuncies.add(oneCandidade.getConstituency());
+		}
+		
+		//********You can also use Iterator************ 		
+		/*
+		Iterator<QSixCandidade> it=arrayList.iterator();
+		while(it.hasNext())
+		{
+			QSixCandidade oneCandidade=it.next();
+			consistuncies.add(oneCandidade.getConstituency());
+		}
+		*/
+		
+	}
+
+	private static void inputReading(String[] input) {
 		for (int i = 0; i < input.length; i++) {
 			String inputOne=input[i];
 			String [] candidadeInfo=inputOne.split(", ");
@@ -59,32 +111,5 @@ public class QSixMaxVoteConsist {
 			arrayList.add(candidade);
 		}
 		
-		Iterator<QSixCandidade> it=arrayList.iterator();
-		while(it.hasNext())
-		{
-			QSixCandidade oneCandidade=it.next();
-			consistuncies.add(oneCandidade.getConstituency());
-		}
-		
-		for (String consist : consistuncies) 
-		{
-			int maxVotes=0;
-			QSixCandidade maxVotesGetedCandidade=null;
-			
-			for (int i = 0; i < input.length; i++) {
-
-				int votes=arrayList.get(i).getVotes();
-				if(arrayList.get(i).getConstituency().equals(consist))
-				{
-					if(maxVotes<votes)
-					{
-						maxVotes=votes;
-						maxVotesGetedCandidade=arrayList.get(i);
-					}
-				}
-			}
-			map.put(maxVotesGetedCandidade.getConstituency(), maxVotesGetedCandidade.getCandidateID());
-		}
-		System.out.println(map);
 	}
 }

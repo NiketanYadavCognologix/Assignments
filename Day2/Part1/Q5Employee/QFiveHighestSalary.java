@@ -1,7 +1,6 @@
-package com.cognologix.Day2.Part1.QFiveEmployee;
+package com.cognologix.Day2.Part1.Q5Employee;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,34 +36,23 @@ public class QFiveHighestSalary {
 							"32, Ajay Patel, Testing, 350000",
 							"34, Swaraj Birla, Testing, 350000"};
 		
-		for (int i = 0; i < input.length; i++) 
-		{
-			String inputOneString=input[i];
-			
-			String [] empInsert=inputOneString.split(",");
-			
-			QFiveEmployee emp=new QFiveEmployee();
-			
-			emp.setEmployeeId(empInsert[0]);
-			emp.setEmployeeName(empInsert[1]);
-			emp.setEmplyeeDept(empInsert[2]);
-			emp.setSalary(empInsert[3]);
-			
-			arrayList.add(emp);
-		}
+		/*Input reading method*/
+		inputReading(input);
+
+		/*Getting unique department names in set*/
+		setOfDepartment();
 		
-		Iterator<QFiveEmployee> it=arrayList.iterator();
-		while(it.hasNext())
-		{
-			QFiveEmployee employee=it.next();
-			set.add(employee.getEmplyeeDept());
-		}
-		
+		/*Getting final result*/
+		finalResult();
+			
+	}
+
+	private static void finalResult() {
 		for (String oneEmpdept : set) 
 		{
 			int maxSalary=0;
 			QFiveEmployee maxSalaryEmployee=null;
-			for (int i = 0; i < input.length; i++) {
+			for (int i = 0; i < arrayList.size(); i++) {
 				
 				String onlySalary="";
 				String takenSalary= arrayList.get(i).getSalary();
@@ -89,7 +77,42 @@ public class QFiveHighestSalary {
 			System.out.println(maxSalaryEmployee.getEmplyeeDept()+" : "+maxSalaryEmployee.getEmployeeId());
 		}
 		
-//		while()
+	}
+
+	private static void setOfDepartment() {
+		
+		for (QFiveEmployee employee : arrayList) {
+			set.add(employee.getEmplyeeDept());
+		}
+		
+		//********You can also use Iterator************ 		
+		/*
+		Iterator<QFiveEmployee> it=arrayList.iterator();
+		while(it.hasNext())
+		{
+			QFiveEmployee employee=it.next();
+			set.add(employee.getEmplyeeDept());
+		}
+		*/
+		
+	}
+
+	private static void inputReading(String[] input) {
+		for (int i = 0; i < input.length; i++) 
+		{
+			String inputOneString=input[i];
+			
+			String [] empInsert=inputOneString.split(",");
+			
+			QFiveEmployee emp=new QFiveEmployee();
+			
+			emp.setEmployeeId(empInsert[0]);
+			emp.setEmployeeName(empInsert[1]);
+			emp.setEmplyeeDept(empInsert[2]);
+			emp.setSalary(empInsert[3]);
+			
+			arrayList.add(emp);
+		}
 		
 	}
 }

@@ -1,7 +1,6 @@
 package com.cognologix.Day2.Part1.Q2SecondMaximunDiscount;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -55,29 +54,18 @@ public class QSecondMaximunDiscount {
 				"Rajan Patil, Aundh, 22, USB Cable,150, UPI", "Meena Kothari, Baner, 23, USB Cable, RS 100, Cash",
 				"Nina Kothari, Baner, 24, USB Cable,200, UPI", "Mohit Gupta, Baner, 25, USB Cable, RS 150, UPI" };
 
-		for (int i = 0; i < input.length; i++) {
-			String inputOneString = input[i];
-			String[] splittedArray = inputOneString.split(",");
+		/* Getting input in arrayList */
+		inputInModule(input);
 
-			QSecondClient client = new QSecondClient();
+		/* Getting unique products into treeSet */
+		getUniqueProducts();
 
-			client.setCustomerName(splittedArray[0]);
-			client.setStoreLocation(splittedArray[1]);
-			client.setDate(splittedArray[2]);
-			client.setProductName(splittedArray[3]);
-			client.setPrice(splittedArray[4]);
-			client.setPaymentType(splittedArray[5]);
+		/* Getting Final Result */
+		finalResultCaomparing();
 
-			clientArrayList.add(client);
-		}
+	}
 
-		Iterator<QSecondClient> it = clientArrayList.iterator();
-
-		while (it.hasNext()) {
-			QSecondClient client = it.next();
-			productNameTreeSet.add(client.getProductName());
-		}
-
+	private static void finalResultCaomparing() {
 		for (String set : productNameTreeSet) {
 
 			if (set.contentEquals(" Phone Cover") || set.contentEquals(" Motorola Battery")) {
@@ -85,21 +73,19 @@ public class QSecondMaximunDiscount {
 				int minPrice = Integer.MAX_VALUE;
 				QSecondClient maxDiscontGettingClient = null;
 
-				for (int i = 0; i < input.length; i++) {
+				for (int i = 0; i < clientArrayList.size(); i++) {
 
 					if (set.contentEquals(clientArrayList.get(i).getProductName())) {
-						
-						String priceString=clientArrayList.get(i).getPrice();
-						String finalPriceString="";
-						for (int j = 0; j < priceString.length(); j++) 
-						{
-							if(priceString.charAt(j)>=48 && priceString.charAt(j)<=57)
-								finalPriceString+=(char)(priceString.charAt(j));
-							
+
+						String priceString = clientArrayList.get(i).getPrice();
+						String finalPriceString = "";
+						for (int j = 0; j < priceString.length(); j++) {
+							if (priceString.charAt(j) >= 48 && priceString.charAt(j) <= 57)
+								finalPriceString += (char) (priceString.charAt(j));
+
 						}
 						int productPrice = Integer.valueOf(finalPriceString);
-						
-						
+
 						if (productPrice < minPrice) {
 							minPrice = productPrice;
 							maxDiscontGettingClient = clientArrayList.get(i);
@@ -109,6 +95,41 @@ public class QSecondMaximunDiscount {
 				System.out.println(minPrice + " --> " + maxDiscontGettingClient.getCustomerName());
 			}
 		}
+	}
+
+	private static void getUniqueProducts() {
+		for (QSecondClient client : clientArrayList) {
+
+			productNameTreeSet.add(client.getProductName());
+		}
+
+		// ********* You can also use iterator********************
+		/*
+		 * Iterator<QSecondClient> it = clientArrayList.iterator();
+		 * 
+		 * while (it.hasNext()) { QSecondClient client = it.next();
+		 * productNameTreeSet.add(client.getProductName()); }
+		 */
+
+	}
+
+	private static void inputInModule(String[] input) {
+		for (int i = 0; i < input.length; i++) {
+			String inputOneString = input[i];
+			String[] splittedArray = inputOneString.split(",");
+
+			QSecondClient client = new QSecondClient();
+
+			client.setCustomerName(splittedArray[0]);
+			client.setStoreLocation(splittedArray[1]);
+			client.setDate(splittedArray[2].trim());
+			client.setProductName(splittedArray[3]);
+			client.setPrice(splittedArray[4]);
+			client.setPaymentType(splittedArray[5]);
+
+			clientArrayList.add(client);
+		}
+
 	}
 
 }

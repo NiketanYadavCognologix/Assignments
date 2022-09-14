@@ -1,7 +1,6 @@
-package com.cognologix.Day2.Part1.QThirdLibrary;
+package com.cognologix.Day2.Part1.Q3Library;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -52,34 +51,48 @@ public class QThirdOutDatedLibrary {
 				"Mail Server, Search Library, v6", "Chat Server, Authentication Library, v8",
 				"Chat Server, Presence Library, v2", "Video Call Server, Data Storage Library, v10",
 				"Video Call Server, Video Compression Library, v3" };
+		
+		/*Input reading method*/
+		inputReading(input);
 
-		for (int i = 0; i < input.length; i++) {
-			String inputOneString = input[i];
+		/*Getting unique library names in set*/
+		setOfLibraryName();
+		
+		/*Save latest version Products in arrayList*/
+		letestVersionOfLibrary();
+		
+		/*Getting final result*/
+		finalResult();
+	
 
-			String[] productInformationArray = inputOneString.split(",");
+		
+	}
+	private static void finalResult() {
+		for (int i = 0; i < arrayListOfLibraryProduct.size(); i++) {
+			for (int j = 0; j < letestVersionArrayList.size(); j++) {
+				if ((letestVersionArrayList.get(j).getLibraryName()
+						.equals(arrayListOfLibraryProduct.get(i).getLibraryName()))
+						&& (!letestVersionArrayList.get(j).getLibraryVersion()
+								.equals(arrayListOfLibraryProduct.get(i).getLibraryVersion()))) {
+					finalAnswer.add(arrayListOfLibraryProduct.get(i).getProductName());
 
-			QThirdLibrary libraryProduct = new QThirdLibrary();
+				}
+			}
 
-			libraryProduct.setProductName(productInformationArray[0]);
-			libraryProduct.setLibraryName(productInformationArray[1]);
-			libraryProduct.setLibraryVersion(productInformationArray[2]);
-
-			arrayListOfLibraryProduct.add(libraryProduct);
 		}
-		Iterator<QThirdLibrary> it = arrayListOfLibraryProduct.iterator();
 
-		while (it.hasNext()) {
-			QThirdLibrary Object = it.next();
-			treeSetOfLibraryName.add(Object.getLibraryName());
-		}
+		System.out.println(finalAnswer);
+	
+	}
 
+	private static void letestVersionOfLibrary() {
 		for (String set : treeSetOfLibraryName) {
 
 			int letestVersion = 0;
 
 			QThirdLibrary letestVersionProduct = null;
 
-			for (int i = 0; i < input.length; i++) {
+			for (int i = 0; i < arrayListOfLibraryProduct.size(); i++) {
 
 				if (set.contentEquals(arrayListOfLibraryProduct.get(i).getLibraryName())) {
 
@@ -101,20 +114,38 @@ public class QThirdOutDatedLibrary {
 			letestVersionArrayList.add(letestVersionProduct);
 
 		}
+	}
 
-		for (int i = 0; i < input.length; i++) {
-			for (int j = 0; j < letestVersionArrayList.size(); j++) {
-				if ((letestVersionArrayList.get(j).getLibraryName()
-						.equals(arrayListOfLibraryProduct.get(i).getLibraryName()))
-						&& (!letestVersionArrayList.get(j).getLibraryVersion()
-								.equals(arrayListOfLibraryProduct.get(i).getLibraryVersion()))) {
-					finalAnswer.add(arrayListOfLibraryProduct.get(i).getProductName());
-
-				}
-			}
-
+	private static void setOfLibraryName() {
+		for (QThirdLibrary Object : arrayListOfLibraryProduct) {
+			treeSetOfLibraryName.add(Object.getLibraryName());
 		}
+		
+		
+//********You can also use Iterator************ 		
+		/*
+		Iterator<QThirdLibrary> it = arrayListOfLibraryProduct.iterator();
 
-		System.out.println(finalAnswer);
+		while (it.hasNext()) {
+			QThirdLibrary Object = it.next();
+			treeSetOfLibraryName.add(Object.getLibraryName());
+		}*/
+	}
+
+	private static List<QThirdLibrary> inputReading(String[] input) {
+		for (int i = 0; i < input.length; i++) {
+			String inputOneString = input[i];
+
+			String[] productInformationArray = inputOneString.split(",");
+
+			QThirdLibrary libraryProduct = new QThirdLibrary();
+
+			libraryProduct.setProductName(productInformationArray[0]);
+			libraryProduct.setLibraryName(productInformationArray[1]);
+			libraryProduct.setLibraryVersion(productInformationArray[2]);
+
+			arrayListOfLibraryProduct.add(libraryProduct);
+		}
+		return arrayListOfLibraryProduct;
 	}
 }

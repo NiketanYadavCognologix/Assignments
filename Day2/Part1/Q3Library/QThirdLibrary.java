@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.QThirdLibrary;
+package com.cognologix.Day2.Part1.Q3Library;
 
 public class QThirdLibrary {
 

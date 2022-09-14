@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.QSixCandidade;
+package com.cognologix.Day2.Part1.Q6Candidade;
 
 
 public class QSixCandidade {
