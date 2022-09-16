@@ -2,10 +2,10 @@ package com.cognologix.Day2.Part1.Q6Candidade;
 
 
 public class QSixCandidade {
-	private int CandidateID;
+	private Integer CandidateID;
 	private String Name;
 	private String Constituency;
-	private int Votes;
+	private Integer Votes;
 	public QSixCandidade() {}
 	public QSixCandidade(int candidateID, String name, String constituency, int votes) {
 		CandidateID = candidateID;
@@ -13,7 +13,7 @@ public class QSixCandidade {
 		Constituency = constituency;
 		Votes = votes;
 	}
-	public int getCandidateID() {
+	public Integer getCandidateID() {
 		return CandidateID;
 	}
 	public void setCandidateID(int candidateID) {
@@ -31,7 +31,7 @@ public class QSixCandidade {
 	public void setConstituency(String constituency) {
 		Constituency = constituency;
 	}
-	public int getVotes() {
+	public Integer getVotes() {
 		return Votes;
 	}
 	public void setVotes(int votes) {

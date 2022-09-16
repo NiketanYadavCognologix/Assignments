@@ -6,12 +6,8 @@ public class QFirstSarver {
 	private String softwareType;
 	private String softwreName;
 	private String version;
-	public QFirstSarver() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public QFirstSarver() {}
 	public QFirstSarver(String serverName, String softwareType, String softwreName, String version) {
-		super();
 		this.serverName = serverName;
 		this.softwareType = softwareType;
 		this.softwreName = softwreName;
@@ -43,8 +39,8 @@ public class QFirstSarver {
 	}
 	@Override
 	public String toString() {
-		return "QFirstSarver [serverName=" + serverName + ", softwareType=" + softwareType + ", softwreName="
-				+ softwreName + ", version=" + version + "]";
+		return java.text.MessageFormat.format("serverName : {0} | softwareType : {1} | softwreName : {2} | version : {3}"
+				, serverName,softwareType,softwreName,version);
 	}
 
 }

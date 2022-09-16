@@ -39,10 +39,10 @@ Storage Library, and Video Call Server ts using an older version of the Authenti
 Library. */
 public class QThirdOutDatedLibrary {
 
-	static List<QThirdLibrary> arrayListOfLibraryProduct = new ArrayList<QThirdLibrary>();
-	static Set<String> treeSetOfLibraryName = new TreeSet<String>();
-	static List<QThirdLibrary> letestVersionArrayList = new ArrayList<>();
-	static Set<String> finalAnswer = new TreeSet<String>();
+	List<QThirdLibrary> arrayListOfLibraryProduct = new ArrayList<QThirdLibrary>();
+	Set<String> treeSetOfLibraryName = new TreeSet<String>();
+	List<QThirdLibrary> letestVersionArrayList = new ArrayList<>();
+	Set<String> finalAnswer = new TreeSet<String>();
 
 	public static void main(String[] args) {
 
@@ -52,22 +52,23 @@ public class QThirdOutDatedLibrary {
 				"Chat Server, Presence Library, v2", "Video Call Server, Data Storage Library, v10",
 				"Video Call Server, Video Compression Library, v3" };
 		
+		QThirdOutDatedLibrary object=new QThirdOutDatedLibrary();
 		/*Input reading method*/
-		inputReading(input);
+		object.inputReading(input);
 
 		/*Getting unique library names in set*/
-		setOfLibraryName();
+		object.setOfLibraryName();
 		
 		/*Save latest version Products in arrayList*/
-		letestVersionOfLibrary();
+		object.letestVersionOfLibrary();
 		
 		/*Getting final result*/
-		finalResult();
+		object.finalResult();
 	
 
 		
 	}
-	private static void finalResult() {
+	private void finalResult() {
 		for (int i = 0; i < arrayListOfLibraryProduct.size(); i++) {
 			for (int j = 0; j < letestVersionArrayList.size(); j++) {
 				if ((letestVersionArrayList.get(j).getLibraryName()
@@ -85,10 +86,10 @@ public class QThirdOutDatedLibrary {
 	
 	}
 
-	private static void letestVersionOfLibrary() {
+	private void letestVersionOfLibrary() {
 		for (String set : treeSetOfLibraryName) {
 
-			int letestVersion = 0;
+			Integer letestVersion = 0;
 
 			QThirdLibrary letestVersionProduct = null;
 
@@ -103,7 +104,7 @@ public class QThirdOutDatedLibrary {
 							letestVersionString += (char) (versionString.charAt(j));
 
 					}
-					int maxVersion = Integer.valueOf(letestVersionString);
+					Integer maxVersion = Integer.valueOf(letestVersionString);
 
 					if (maxVersion > letestVersion) {
 						letestVersion = maxVersion;
@@ -116,7 +117,7 @@ public class QThirdOutDatedLibrary {
 		}
 	}
 
-	private static void setOfLibraryName() {
+	private void setOfLibraryName() {
 		for (QThirdLibrary Object : arrayListOfLibraryProduct) {
 			treeSetOfLibraryName.add(Object.getLibraryName());
 		}
@@ -132,7 +133,7 @@ public class QThirdOutDatedLibrary {
 		}*/
 	}
 
-	private static List<QThirdLibrary> inputReading(String[] input) {
+	private List<QThirdLibrary> inputReading(String[] input) {
 		for (int i = 0; i < input.length; i++) {
 			String inputOneString = input[i];
 

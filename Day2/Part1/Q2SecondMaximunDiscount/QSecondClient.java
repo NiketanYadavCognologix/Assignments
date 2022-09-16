@@ -57,8 +57,9 @@ public class QSecondClient {
 	}
 	@Override
 	public String toString() {
-		return "QSecondClient [customerName=" + customerName + ", storeLocation=" + storeLocation + ", date=" + date
-				+ ", productName=" + productName + ", price=" + price + ", paymentType=" + paymentType + "]";
+		return java.text.MessageFormat.format("customerName : {0} | storeLocation : {1} | date : {2} | "
+				+ "productName : {3} | price : {4} | paymentType : {5}", customerName,storeLocation,date,
+				productName,price,paymentType);
 	}
 	
 }

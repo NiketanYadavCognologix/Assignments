@@ -28,9 +28,9 @@ This is because Candidate ID 22 (Ravi Pawar) has the highest votes in Aundh, and
 Candidate ID 23 (Suvarna Kale) has the highest votes in Baner*/
 public class QSixMaxVoteConsist {
 
-	static List<QSixCandidade> arrayList=new ArrayList<QSixCandidade>();
-	static Set<String> consistuncies=new TreeSet<String>();
-	static Map<String, Integer> map=new HashMap<String, Integer>();
+	List<QSixCandidade> arrayList=new ArrayList<QSixCandidade>();
+	Set<String> consistuncies=new TreeSet<String>();
+	Map<String, Integer> map=new HashMap<String, Integer>();
 	
 	public static void main(String[] args) {
 		
@@ -41,25 +41,26 @@ public class QSixMaxVoteConsist {
 				"32, Aarti Patil, Baner, 351",
 				"34, Swaran Bijur, Baner, 352"};
 		
+		QSixMaxVoteConsist object=new QSixMaxVoteConsist();
 		/*Input reading method*/
-		inputReading(input);
+		object.inputReading(input);
 
 		/*Getting unique consistency names in set*/
-		setOfConsistencies();
+		object.setOfConsistencies();
 		
 		/*Getting final result*/
-		finalResult();		
+		object.finalResult();		
 	}
 
-	private static void finalResult() {
+	private void finalResult() {
 		for (String consist : consistuncies) 
 		{
-			int maxVotes=0;
+			Integer maxVotes=0;
 			QSixCandidade maxVotesGetedCandidade=null;
 			
 			for (int i = 0; i < arrayList.size(); i++) {
 
-				int votes=arrayList.get(i).getVotes();
+				Integer votes=arrayList.get(i).getVotes();
 				if(arrayList.get(i).getConstituency().equals(consist))
 				{
 					if(maxVotes<votes)
@@ -75,7 +76,7 @@ public class QSixMaxVoteConsist {
 		
 	}
 
-	private static void setOfConsistencies() {
+	private void setOfConsistencies() {
 		
 		for (QSixCandidade oneCandidade : arrayList) {
 			consistuncies.add(oneCandidade.getConstituency());
@@ -93,15 +94,15 @@ public class QSixMaxVoteConsist {
 		
 	}
 
-	private static void inputReading(String[] input) {
+	private void inputReading(String[] input) {
 		for (int i = 0; i < input.length; i++) {
 			String inputOne=input[i];
 			String [] candidadeInfo=inputOne.split(", ");
 			
 			QSixCandidade candidade=new QSixCandidade();
 			
-			int candidadeId=Integer.valueOf(candidadeInfo[0]);
-			int vote=Integer.valueOf(candidadeInfo[3]);
+			Integer candidadeId=Integer.valueOf(candidadeInfo[0]);
+			Integer vote=Integer.valueOf(candidadeInfo[3]);
 			
 			candidade.setCandidateID(candidadeId);
 			candidade.setName(candidadeInfo[1]);

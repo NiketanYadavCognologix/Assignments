@@ -18,27 +18,29 @@ and "Subject" is a string that does not contain commas or newlines. There can be
 Write a program to compute the average marks scored across all subjects by the student with the lowest ID.*/
 public class QFourthStudentMarks {
 
-	static List<QFourthStudent> studentArrayList = new ArrayList<QFourthStudent>();
-	static float averageMarks = 0;
-	static int sumOfMarks = 0;
-	static QFourthStudent lowestIdStudent;
+	List<QFourthStudent> studentArrayList = new ArrayList<QFourthStudent>();
+	Double averageMarks = 0.0;
+	Integer sumOfMarks = 0;
+	QFourthStudent lowestIdStudent;
 
 	public static void main(String[] args) {
 		String[] input = { "22, Data Structures,45", "23, English,52", "22, English,51", "26, Data Structures,72",
 				"23, Data Structures,61", "24, English,81" };
+		
+		QFourthStudentMarks object=new QFourthStudentMarks();
 		/* String array reading method */
-		inputReading(input);
+		object.inputReading(input);
 
 		/* Getting lowest marks student */
-		lowestIdStudent = gettingAverageMarks();
+		object.lowestIdStudent = object.gettingAverageMarks();
 
 		/* Printing the Result */
-		printResult();
+		object.printResult();
 
 			}
 
-	private static void printResult() {
-		averageMarks = sumOfMarks / studentArrayList.size();
+	private void printResult() {
+		averageMarks = (double) (sumOfMarks / studentArrayList.size());
 
 		System.out.println("lowest Id Student is ---> " + lowestIdStudent.getStudentId() + " have marks --> "
 				+ lowestIdStudent.getMarks());
@@ -46,8 +48,8 @@ public class QFourthStudentMarks {
 
 	}
 
-	private static QFourthStudent gettingAverageMarks() {
-		int lowestID = Integer.MAX_VALUE;
+	private QFourthStudent gettingAverageMarks() {
+		Integer lowestID = Integer.MAX_VALUE;
 		lowestIdStudent = null;
 
 		for (QFourthStudent student : studentArrayList) {
@@ -70,15 +72,15 @@ public class QFourthStudentMarks {
 		return lowestIdStudent;
 	}
 
-	private static void inputReading(String[] input) {
+	private void inputReading(String[] input) {
 		for (int i = 0; i < input.length; i++) {
 			String inputOneString = input[i];
 			String[] splittedString = inputOneString.split(",");
 
 			QFourthStudent student = new QFourthStudent();
 
-			int StudId = Integer.parseInt(splittedString[0]);
-			int marks = Integer.parseInt(splittedString[2]);
+			Integer StudId = Integer.parseInt(splittedString[0]);
+			Integer marks = Integer.parseInt(splittedString[2]);
 
 			student.setStudentId(StudId);
 			student.setName(splittedString[1]);

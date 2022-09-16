@@ -25,8 +25,8 @@ This is because Employee ID 22 (Rajan Anand) is the highest paid employee in the
 Employee ID 23 (Swati Patil) is the highest paid employee in the Testing department.*/
 public class QFiveHighestSalary {
 	
-	static List<QFiveEmployee> arrayList=new ArrayList<QFiveEmployee>();
-	static Set<String> set=new TreeSet<String>();
+	List<QFiveEmployee> arrayList=new ArrayList<QFiveEmployee>();
+	Set<String> set=new TreeSet<String>();
 	
 	public static void main(String[] args) {
 		String [] input= {"22, Rajan Anand, Engineering, 1600000",
@@ -36,21 +36,22 @@ public class QFiveHighestSalary {
 							"32, Ajay Patel, Testing, 350000",
 							"34, Swaraj Birla, Testing, 350000"};
 		
+		QFiveHighestSalary object=new QFiveHighestSalary();
 		/*Input reading method*/
-		inputReading(input);
+		object.inputReading(input);
 
 		/*Getting unique department names in set*/
-		setOfDepartment();
+		object.setOfDepartment();
 		
 		/*Getting final result*/
-		finalResult();
+		object.finalResult();
 			
 	}
 
-	private static void finalResult() {
+	private void finalResult() {
 		for (String oneEmpdept : set) 
 		{
-			int maxSalary=0;
+			Integer maxSalary=0;
 			QFiveEmployee maxSalaryEmployee=null;
 			for (int i = 0; i < arrayList.size(); i++) {
 				
@@ -61,7 +62,7 @@ public class QFiveHighestSalary {
 					if(takenSalary.charAt(j)>=48 && takenSalary.charAt(j)<=57)
 						onlySalary+=(char)(takenSalary.charAt(j));
 				}
-				int salary=Integer.parseInt(onlySalary);
+				Integer salary=Integer.parseInt(onlySalary);
 //				System.out.println(n);
 				
 				if(arrayList.get(i).getEmplyeeDept().equals(oneEmpdept))
@@ -79,7 +80,7 @@ public class QFiveHighestSalary {
 		
 	}
 
-	private static void setOfDepartment() {
+	private void setOfDepartment() {
 		
 		for (QFiveEmployee employee : arrayList) {
 			set.add(employee.getEmplyeeDept());
@@ -97,7 +98,7 @@ public class QFiveHighestSalary {
 		
 	}
 
-	private static void inputReading(String[] input) {
+	private void inputReading(String[] input) {
 		for (int i = 0; i < input.length; i++) 
 		{
 			String inputOneString=input[i];

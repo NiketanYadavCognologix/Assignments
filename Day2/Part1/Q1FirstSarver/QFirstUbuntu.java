@@ -25,33 +25,35 @@ Thus, in this case, the output of your program should be:
 Ubuntu
 Because Ubuntu 12.04 is an out-of-date version (the latest version is 18.04), and it is installed on two servers (Server 3, and Server 1).*/
 public class QFirstUbuntu {
-
-	static List<QFirstSarver> list = new ArrayList<QFirstSarver>();
-	static Set<String> softwareNameSet = new TreeSet<String>();
-	static List<String> softwares = new ArrayList<String>();
+	List<QFirstSarver> list = new ArrayList<QFirstSarver>();
+	 Set<String> softwareNameSet = new TreeSet<String>();
+	 List<String> softwares = new ArrayList<String>();
 
 	public static void main(String[] args) {
+		
+
 		String[] inputArray = { "Server1, Database, MySQL, 5.5", "Server2, Database, MySQL, 5.1",
 				"Server3, OS, Ubuntu, 12.04", "Server1, OS, Ubuntu, 12.04", "Server2, OS, Ubuntu, 18.04",
 				"Server3, Language, Python, 2.6.3" };
 		
+		QFirstUbuntu ubuntu=new QFirstUbuntu();
 		/*Getting input in arrayList*/
-		inputInModule(inputArray);
+		ubuntu.inputInModule(inputArray);
 		
 		/*Get unique software names in set by using treeSet*/
-		uniqueSoftwares();	
+		ubuntu.uniqueSoftwares();	
 		
 		/*To find maximum version and getting into one object to compare with others*/
-		maxVersionSoftware();
+		ubuntu.maxVersionSoftware();
 		
 		/*Final result getting method*/
-		finalResult();
+		ubuntu.finalResult();
 	}
 
-	private static void finalResult() {
+	private void finalResult() {
 
 		for (String oneSoftware : softwares) {
-			int cnt = 0;
+			Integer cnt = 0;
 			String result = "";
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getSoftwreName().equals(oneSoftware) && cnt <= 1) {
@@ -65,7 +67,7 @@ public class QFirstUbuntu {
 		}
 	}
 
-	private static void maxVersionSoftware() {
+	private void maxVersionSoftware() {
 
 		for (String software : softwareNameSet) {
 			String maxVersion = "";
@@ -89,7 +91,7 @@ public class QFirstUbuntu {
 
 	}
 
-	private static void uniqueSoftwares() {
+	private void uniqueSoftwares() {
 		
 		Iterator<QFirstSarver> it = list.iterator();
 		while (it.hasNext()) {
@@ -99,7 +101,7 @@ public class QFirstUbuntu {
 
 	}
 
-	private static void inputInModule(String[] inputArray) {
+	private void inputInModule(String[] inputArray) {
 		for (int i = 0; i < inputArray.length; i++) {
 			String oneInput = inputArray[i];
 
@@ -112,6 +114,7 @@ public class QFirstUbuntu {
 			infoServer.setVersion(splittedString[3]);
 
 			list.add(infoServer);
+//			System.out.println(infoServer); 		//This is just for check the java.text.MassageFormate works. 
 //			System.out.println(list);
 
 		}

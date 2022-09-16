@@ -2,16 +2,16 @@ package com.cognologix.Day2.Part1.Q4Student;
 
 public class QFourthStudent {
 
-	private int StudentId;
+	private Integer StudentId;
 	private String Name;
-	private int marks;
+	private Integer marks;
 	public QFourthStudent() {}
 	public QFourthStudent(int studentId, String name, int marks) {
 		StudentId = studentId;
 		Name = name;
 		this.marks = marks;
 	}
-	public int getStudentId() {
+	public Integer getStudentId() {
 		return StudentId;
 	}
 	public void setStudentId(int studentId) {
@@ -23,7 +23,7 @@ public class QFourthStudent {
 	public void setName(String name) {
 		Name = name;
 	}
-	public int getMarks() {
+	public Integer getMarks() {
 		return marks;
 	}
 	public void setMarks(int marks) {

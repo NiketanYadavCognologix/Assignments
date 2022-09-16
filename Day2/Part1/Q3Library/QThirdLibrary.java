@@ -31,7 +31,7 @@ public class QThirdLibrary {
 	}
 	@Override
 	public String toString() {
-		return "QThirdLibrary [productName=" + productName + ", libraryName=" + libraryName + ", libraryVersion="
-				+ libraryVersion + "]";
+		return java.text.MessageFormat.format("productName : {0} | libraryName : {1} | libraryVersion : {2}",
+				productName,libraryName,libraryVersion);
 	}
 }
