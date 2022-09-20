@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.Q6Candidade;
+package com.cognologix.Day2.Part1.Q6Candidade.Model;
 
 
 public class QSixCandidade {

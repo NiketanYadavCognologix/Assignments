@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.Q5Employee;
+package com.cognologix.Day2.Part1.Q5Employee.Model;
 
 public class QFiveEmployee {
 

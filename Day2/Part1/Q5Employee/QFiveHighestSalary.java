@@ -1,9 +1,6 @@
 package com.cognologix.Day2.Part1.Q5Employee;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import com.cognologix.Day2.Part1.Q5Employee.Solution.QFiveSolution;
 
 /*    5. Highest Salary in Dept
 
@@ -24,9 +21,7 @@ Testing: 23
 This is because Employee ID 22 (Rajan Anand) is the highest paid employee in the Engineering department, and 
 Employee ID 23 (Swati Patil) is the highest paid employee in the Testing department.*/
 public class QFiveHighestSalary {
-	
-	List<QFiveEmployee> arrayList=new ArrayList<QFiveEmployee>();
-	Set<String> set=new TreeSet<String>();
+
 	
 	public static void main(String[] args) {
 		String [] input= {"22, Rajan Anand, Engineering, 1600000",
@@ -36,7 +31,7 @@ public class QFiveHighestSalary {
 							"32, Ajay Patel, Testing, 350000",
 							"34, Swaraj Birla, Testing, 350000"};
 		
-		QFiveHighestSalary object=new QFiveHighestSalary();
+		QFiveSolution object=new QFiveSolution();
 		/*Input reading method*/
 		object.inputReading(input);
 
@@ -46,74 +41,5 @@ public class QFiveHighestSalary {
 		/*Getting final result*/
 		object.finalResult();
 			
-	}
-
-	private void finalResult() {
-		for (String oneEmpdept : set) 
-		{
-			Integer maxSalary=0;
-			QFiveEmployee maxSalaryEmployee=null;
-			for (int i = 0; i < arrayList.size(); i++) {
-				
-				String onlySalary="";
-				String takenSalary= arrayList.get(i).getSalary();
-				for (int j = 0; j <takenSalary.length(); j++) 
-				{
-					if(takenSalary.charAt(j)>=48 && takenSalary.charAt(j)<=57)
-						onlySalary+=(char)(takenSalary.charAt(j));
-				}
-				Integer salary=Integer.parseInt(onlySalary);
-//				System.out.println(n);
-				
-				if(arrayList.get(i).getEmplyeeDept().equals(oneEmpdept))
-				{
-					if(maxSalary<salary)
-					{
-						maxSalary=salary;
-						maxSalaryEmployee=arrayList.get(i);
-					}
-				}
-			}
-			
-			System.out.println(maxSalaryEmployee.getEmplyeeDept()+" : "+maxSalaryEmployee.getEmployeeId());
-		}
-		
-	}
-
-	private void setOfDepartment() {
-		
-		for (QFiveEmployee employee : arrayList) {
-			set.add(employee.getEmplyeeDept());
-		}
-		
-		//********You can also use Iterator************ 		
-		/*
-		Iterator<QFiveEmployee> it=arrayList.iterator();
-		while(it.hasNext())
-		{
-			QFiveEmployee employee=it.next();
-			set.add(employee.getEmplyeeDept());
-		}
-		*/
-		
-	}
-
-	private void inputReading(String[] input) {
-		for (int i = 0; i < input.length; i++) 
-		{
-			String inputOneString=input[i];
-			
-			String [] empInsert=inputOneString.split(",");
-			
-			QFiveEmployee emp=new QFiveEmployee();
-			
-			emp.setEmployeeId(empInsert[0]);
-			emp.setEmployeeName(empInsert[1]);
-			emp.setEmplyeeDept(empInsert[2]);
-			emp.setSalary(empInsert[3]);
-			
-			arrayList.add(emp);
-		}
-		
 	}
 }

@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.Q1FirstSarver;
+package com.cognologix.Day2.Part1.Q1FirstSarver.Model;
 
 public class QFirstSarver {
 	

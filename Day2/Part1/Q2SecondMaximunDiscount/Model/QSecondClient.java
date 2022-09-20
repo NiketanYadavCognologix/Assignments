@@ -1,4 +1,4 @@
-package com.cognologix.Day2.Part1.Q2SecondMaximunDiscount;
+package com.cognologix.Day2.Part1.Q2SecondMaximunDiscount.Model;
 /*The first column is customer name, the second column is store location, the third column is date (just day of the month is captured), 
 the fourth column is product name, fifth is price, and sixth is payment type.*/
 public class QSecondClient {
