@@ -9,72 +9,71 @@ import com.cognologix.Part1.Q3Library.Module.Product;
 
 public class OudatedVersionCalculator {
 
-	List<Product> arrayListOfLibraryProduct = new ArrayList<Product>();
-	List<Product> letestVersionArrayList = new ArrayList<>();
-	Set<String> finalAnswer = new TreeSet<String>();
-
-	public void finalResult() {
-		for (int i = 0; i < arrayListOfLibraryProduct.size(); i++) {
-			for (int j = 0; j < letestVersionArrayList.size(); j++) {
-				if ((letestVersionArrayList.get(j).getLibraryName()
-						.equals(arrayListOfLibraryProduct.get(i).getLibraryName()))
-						&& (!letestVersionArrayList.get(j).getLibraryVersion()
-								.equals(arrayListOfLibraryProduct.get(i).getLibraryVersion()))) {
-					finalAnswer.add(arrayListOfLibraryProduct.get(i).getProductName());
-
-				}
-			}
-
-		}
-
-		System.out.println(finalAnswer);
-
+	List<Product> productsList;
+	public OudatedVersionCalculator(List<Product> productsList) {
+		this.productsList = productsList;
 	}
 
-	public void letestVersionOfLibrary() {
-		for (String set : treeSetOfLibraryName) {
-
-			Integer letestVersion = 0;
-
-			Product letestVersionProduct = null;
-
-			for (int i = 0; i < arrayListOfLibraryProduct.size(); i++) {
-
-				if (set.contentEquals(arrayListOfLibraryProduct.get(i).getLibraryName())) {
-
-					String versionString = arrayListOfLibraryProduct.get(i).getLibraryVersion();
-					String letestVersionString = "";
-					for (int j = 0; j < versionString.length(); j++) {
-						if (versionString.charAt(j) >= 48 && versionString.charAt(j) <= 57)
-							letestVersionString += (char) (versionString.charAt(j));
-
-					}
-					Integer maxVersion = Integer.valueOf(letestVersionString);
-
-					if (maxVersion > letestVersion) {
-						letestVersion = maxVersion;
-						letestVersionProduct = arrayListOfLibraryProduct.get(i);
-					}
-				}
-			}
-			letestVersionArrayList.add(letestVersionProduct);
-
-		}
-	}
-
-	public Set<String> setOfLibraryName(List<Product> productList) {
+	public Set<String> setOfLibraryName() {
 		Set<String> treeSetOfLibraryName = new TreeSet<String>();
-		for (Product Object : productList) {
+		for (Product Object : productsList) {
 			treeSetOfLibraryName.add(Object.getLibraryName());
 		}
 		return treeSetOfLibraryName;
 	}
 
-	public List<Product> inputReading(String[] input) {
-		for (int i = 0; i < input.length; i++) {
-			String inputOneString = input[i];
+	public List<Product> getLetestVersionLibrary(Set<String> librariesName) {
+		List<Product> letestVersionLibrariesList = new ArrayList<>();
 
+		for (String set : librariesName) {
+
+			Integer letestVersion = 0;
+
+			Product letestVersionProduct = null;
+
+			for (int i = 0; i < productsList.size(); i++) {
+
+				if (set.contentEquals(productsList.get(i).getLibraryName())) {
+
+					String versionString = productsList.get(i).getLibraryVersion();
+					String letestVersionString = "";
+					for (int j = 0; j < versionString.length(); j++) {
+						if (versionString.charAt(j) >= 48 && versionString.charAt(j) <= 57)
+							letestVersionString += (char) (versionString.charAt(j));
+					}
+					Integer maxVersion = Integer.valueOf(letestVersionString);
+
+					if (maxVersion > letestVersion) {
+						letestVersion = maxVersion;
+						letestVersionProduct = productsList.get(i);
+					}
+				}
+			}
+			letestVersionLibrariesList.add(letestVersionProduct);
 		}
-		return arrayListOfLibraryProduct;
+		return letestVersionLibrariesList;
+	}
+
+	public Set<String> getOutDatedVerions(List<Product> letestVersionLibrariesList) {
+		Set<String> finalAnswer = new TreeSet<String>();
+
+		for (Product product: productsList) {
+			for (int j = 0; j < letestVersionLibrariesList.size(); j++) {
+				if ((letestVersionLibrariesList.get(j).getLibraryName().equals(product.getLibraryName()))
+						&& (!letestVersionLibrariesList.get(j).getLibraryVersion()
+								.equals(product.getLibraryVersion()))) {
+					finalAnswer.add(product.getProductName());
+
+				}
+			}
+		}
+		
+		return finalAnswer;
+	}
+
+	public void printOutdatedLibraries(Set<String> outdatedVersionProducts) {
+		for (String outatedLibrary : outdatedVersionProducts) {
+			System.out.println(outatedLibrary);
+		}
 	}
 }

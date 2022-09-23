@@ -40,8 +40,6 @@ public class AvarageMarksCalculator {
 	}
 
 	public Double getAverageMarks(Student lowestIdStudent, List<Student> studentsList) {
-
-		Double averageMarks = 0.0;
 		Double totalMarks = 0.0;
 		Integer subjectsCount = (int) studentsList.stream()
 												.filter(student -> student.getStudentId().equals(lowestIdStudent.getStudentId()))

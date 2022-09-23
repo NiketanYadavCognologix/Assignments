@@ -13,23 +13,23 @@ import com.cognologix.Part1.Q4Student.Model.Student;
 
 public class StudentInputParser {
 
-	public List<Student> parseArray(String[] inputData)
-	{
-		List<Student> studentList=new ArrayList<Student>();
-		
+	public List<Student> parseArray(String[] inputData) {
+		List<Student> studentList = new ArrayList<Student>();
+
 		for (String studentdata : inputData) {
-			Student student=StudentMapper.map(studentdata);
+			Student student = StudentMapper.map(studentdata);
 			studentList.add(student);
 		}
 		return studentList;
-		
+
 	}
 
 	public List<Student> parseCSVFile(String filePath) {
 		List<Student> studentList = new ArrayList<Student>();
 		File file = new File(filePath);
+		BufferedReader bufferRead = null;
 		try {
-			BufferedReader bufferRead = new BufferedReader(new FileReader(file));
+			bufferRead = new BufferedReader(new FileReader(file));
 			String string1;
 
 			try {
@@ -37,12 +37,18 @@ public class StudentInputParser {
 					Student student = StudentMapper.map(string1);
 					studentList.add(student);
 				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
+			} catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
+		} catch (FileNotFoundException fileNotFoundException) {
+			throw new RuntimeException(fileNotFoundException);
+		} finally {
+			try {
+				bufferRead.close();
+			} catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
 		}
 		return studentList;
 	}

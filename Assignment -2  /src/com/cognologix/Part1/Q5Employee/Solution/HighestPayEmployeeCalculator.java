@@ -15,27 +15,26 @@ public class HighestPayEmployeeCalculator {
 		this.employeesList = employeesList;
 	}
 
-	public Set<String> getDepatments(List<Employee> employeeList) {
+	public Set<String> getDepatments() {
 		Set<String> departmentNames = new TreeSet<String>();
 
-		for (Employee employee : employeeList) {
+		for (Employee employee : employeesList) {
 			departmentNames.add(employee.getEmplyeeDept());
 		}
 		return departmentNames;
 	}
 
-	public List<Employee> getHighestPayEmployeeInEachDepartment(List<Employee> employeeList,
-			Set<String> departmentNamesSet) {
+	public List<Employee> getHighestPayEmployeeInEachDepartment(Set<String> departmentNamesSet) {
 
 		List<Employee> highestPayEmployees = new ArrayList<Employee>();
 
 		for (String department : departmentNamesSet) {
 			Integer maximumSalary = 0;
 			Employee maximumSalaryEmployee = null;
-			for (int i = 0; i < employeeList.size(); i++) {
+			for (int i = 0; i < employeesList.size(); i++) {
 
 				String salaryString = "";
-				String inputSalaryString = employeeList.get(i).getSalary();
+				String inputSalaryString = employeesList.get(i).getSalary();
 
 				/*
 				 * we can use trim method but if any alphabet's or symbol is skipped by this
@@ -45,10 +44,10 @@ public class HighestPayEmployeeCalculator {
 
 				Integer salary = Integer.parseInt(salaryString);
 
-				if (employeeList.get(i).getEmplyeeDept().equals(department)) {
+				if (employeesList.get(i).getEmplyeeDept().equals(department)) {
 					if (maximumSalary < salary) {
 						maximumSalary = salary;
-						maximumSalaryEmployee = employeeList.get(i);
+						maximumSalaryEmployee = employeesList.get(i);
 					}
 				}
 			}

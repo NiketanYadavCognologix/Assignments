@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.cognologix.Part1.Q3Library.Module.Product;
 import com.cognologix.Part1.Q3Library.Solution.OudatedVersionCalculator;
+import com.cognologix.Part1.Q3Library.parser.ProductInputParser;
 
 /*    3. At Least One Outdated Library
 
@@ -41,28 +42,35 @@ Library. */
 public class Main {
 
 	public static void main(String[] args) {
+		try {
+			String inputFilePath = "/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q3Library/file/input.csv";
+			
+			// class for parsing CSV file and Map with ArrayList of product
+			ProductInputParser inputParser = new ProductInputParser();
 
-		String[] input = { "Mail Server, Authentication Library, v6", "Video Call Server, Authentication Library, v7",
-				"Mail Server, Data Storage Library, v10", "Chat Server, Data Storage Library, v11",
-				"Mail Server, Search Library, v6", "Chat Server, Authentication Library, v8",
-				"Chat Server, Presence Library, v2", "Video Call Server, Data Storage Library, v10",
-				"Video Call Server, Video Compression Library, v3" };
-		
-		OudatedVersionCalculator poductVersionCalculator=new OudatedVersionCalculator();
-		// method to get input mapped input
-		List<Product> productList=poductVersionCalculator.inputReading(input);
+			// method getting list of Products into arrayList
+			List<Product> productsList = inputParser.productCSVParser(inputFilePath);
 
-		/*Getting unique library names in set*/
-		Set<String> librariesName=poductVersionCalculator.setOfLibraryName(productList);
-		
-		/*Save latest version Products in arrayList*/
-		poductVersionCalculator.letestVersionOfLibrary();
-		
-		/*Getting final result*/
-		poductVersionCalculator.finalResult();
-	
+			// class for calculate required operation on product
+			OudatedVersionCalculator poductVersionCalculator = new OudatedVersionCalculator(productsList);
 
-		
+			// method of get unique library names in ArrrayList
+			final Set<String> librariesName = poductVersionCalculator.setOfLibraryName();
+
+			// method to get all updated versions libraries into arrayList
+			final List<Product> letestVersionLibrariesList = poductVersionCalculator
+					.getLetestVersionLibrary(librariesName);
+
+			// method for get out dated version on server have
+			final Set<String> outdatedVersionProducts = poductVersionCalculator.getOutDatedVerions(letestVersionLibrariesList);
+
+			// method for print the result
+			poductVersionCalculator.printOutdatedLibraries(outdatedVersionProducts);
+
+		} catch (Exception exception) {
+			throw new RuntimeException(exception);
+		}
+
 	}
 
 }

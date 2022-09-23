@@ -43,23 +43,23 @@ public class Main {
 
 	public static void main(String[] args) {
 	
-		/* class for getting input and parsing */
+		// class for parsing CSV file and Map with ArrayList of customer
 		CustomerInputParser inputParser=new CustomerInputParser();
 		String path="/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q2Customer/files/input.csv";
 		
-		/* method in CustomerInputParser class used to parse the input */
-		List<Customer> customersList=inputParser.customerCSVParser(path);
+		// method from CustomerInputParser class used for parsing CSV file and Map with ArrayList of customer
+		final List<Customer> customersList=inputParser.customerCSVParser(path);
 		
-		/* class for calculate discount related operations */
+		// class for version calculation
 		DiscontedProductCalcolator products =new DiscontedProductCalcolator(customersList);
 				
-		/* Getting All product names into set */
-		Set<String> productsNames = products.getProducts(customersList);
+		// method from DiscontedProductCalcolator get the all product names
+		final Set<String> productsNames = products.getProducts();
 
-		/* Getting Most discounted Customer list */
-		List<Customer> mostDiscountedCustemerList = products.getMostDiscountedCustomerList(productsNames, customersList);
+		// method from DiscontedProductCalcolator get most Discounted customer
+		final List<Customer> mostDiscountedCustemerList = products.getMostDiscountedCustomerList(productsNames);
 
-		/* Printing all the customer having most discount */
+		// method from DiscontedProductCalcolator printing the result set
 		products.printResults(mostDiscountedCustemerList);
 
 	}

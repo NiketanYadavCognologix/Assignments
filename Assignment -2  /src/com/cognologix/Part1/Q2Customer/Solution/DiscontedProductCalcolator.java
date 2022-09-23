@@ -15,17 +15,17 @@ public class DiscontedProductCalcolator {
 		this.customerList = customerList;
 	}
 
-	public Set<String> getProducts(List<Customer> listOfCustomer) {
+	public Set<String> getProducts() {
 
 		Set<String> allProductNamesSet = new TreeSet<String>();
 
-		for (Customer customer : listOfCustomer) {
+		for (Customer customer : customerList) {
 			allProductNamesSet.add(customer.getProductName());
 		}
 		return allProductNamesSet;
 	}
 
-	public List<Customer> getMostDiscountedCustomerList(Set<String> productsSet, List<Customer> listOfCustomer) {
+	public List<Customer> getMostDiscountedCustomerList(Set<String> productsSet) {
 
 		List<Customer> mostDiscountedCustomerList = new ArrayList<Customer>();
 		for (String productName : productsSet) {
@@ -36,12 +36,12 @@ public class DiscontedProductCalcolator {
 				Integer minPrice = Integer.MAX_VALUE;
 				Customer maxDiscontGettingCustomer = null;
 
-				for (int i = 0; i < listOfCustomer.size(); i++) {
+				for (int i = 0; i < customerList.size(); i++) {
 
-					if (productName.contentEquals(listOfCustomer.get(i).getProductName())) {
+					if (productName.contentEquals(customerList.get(i).getProductName())) {
 
 						/* Getting only number's from Price */
-						String priceInputString = listOfCustomer.get(i).getPrice();
+						String priceInputString = customerList.get(i).getPrice();
 						String priceStringWithoutCharacter = "";
 						for (int j = 0; j < priceInputString.length(); j++) {
 							if (priceInputString.charAt(j) >= 48 && priceInputString.charAt(j) <= 57)
@@ -52,7 +52,7 @@ public class DiscontedProductCalcolator {
 
 						if (productPrice < minPrice) {
 							minPrice = productPrice;
-							maxDiscontGettingCustomer = listOfCustomer.get(i);
+							maxDiscontGettingCustomer = customerList.get(i);
 						}
 					}
 				}

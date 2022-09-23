@@ -12,7 +12,7 @@ public class CustomerMapper {
 		customer.setCustomerName(splittedArray[0]);
 		customer.setStoreLocation(splittedArray[1]);
 		customer.setDate(splittedArray[2].trim());
-		customer.setProductName(splittedArray[3]);
+		customer.setProductName(splittedArray[3].trim());
 		customer.setPrice(splittedArray[4]);
 		customer.setPaymentType(splittedArray[5]);
 

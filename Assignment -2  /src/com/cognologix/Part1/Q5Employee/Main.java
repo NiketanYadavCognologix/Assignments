@@ -30,20 +30,23 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+		// class for parsing CSV file and Map with ArrayList of customer
 		EmployeeInputParser inputParser=new EmployeeInputParser();
 		String inputFilePath="/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q5Employee/files/input.csv";
 		
+		// method in EmployeeInputParser class getting list of employees
 		List<Employee> employeesList=inputParser.employeeCSVParser(inputFilePath);
 		
+		// class for calculating the highest pay
 		HighestPayEmployeeCalculator highestPayCalculator=new HighestPayEmployeeCalculator(employeesList);
 		
-		/*Get unique department names in set*/
-		final Set<String> departmentNamesSet=highestPayCalculator.getDepatments(employeesList);
+		// method in class HighestPayEmployeeCalculator gives the set of department name
+		final Set<String> departmentNamesSet=highestPayCalculator.getDepatments();
 		
-		/*Get highest pay in each department*/
-		final List<Employee> highestPayEmployeesList=highestPayCalculator.getHighestPayEmployeeInEachDepartment(employeesList,departmentNamesSet);
+		// method to get highest pay employee from employee from each department arrayList
+		final List<Employee> highestPayEmployeesList=highestPayCalculator.getHighestPayEmployeeInEachDepartment(departmentNamesSet);
 		
-		/*Print the result */
+		// printing the result by giving the list of highest pay employee
 		highestPayCalculator.printResult(highestPayEmployeesList);
 			
 	}
