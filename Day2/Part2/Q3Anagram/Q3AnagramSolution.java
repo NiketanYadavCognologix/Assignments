@@ -2,27 +2,10 @@ package com.cognologix.Day2.Part2.Q3Anagram;
 
 import java.util.Arrays;
 
-public class Q3Anagram {
-	public static void main(String[] args) {
+public class Q3AnagramSolution {
 
-		Q3Anagram object=new Q3Anagram();
-//		String givenString1="listen";
-		String givenString1 = "dormitory";
-		String givenString = "";
-		String[] names = { "enlists", "google", "inlets", "banana", "snteli", "dirty     36362*/*/525room" };
 
-		/* Getting String with only alphabets */
-		givenString = object.giinputWord(givenString, givenString1);
-
-		/* Sorting the given input */
-		char[] givenCharArray = object.sortingInput(givenString);
-
-		/* Checking Strings from given array */
-		object.checkingAnagram(names, givenString, givenCharArray);
-
-	}
-
-	private void checkingAnagram(String[] names, String givenString, char[] givenCharArray) {
+	public void checkingAnagram(String[] names, String givenString, char[] givenCharArray) {
 		System.out.print("Anagrams are ---> ");
 		for (String string1 : names) {
 			String string = "";
@@ -37,7 +20,7 @@ public class Q3Anagram {
 
 	}
 
-	private void anagramsFromStringArray(String string, String givenString, char[] givenCharArray,
+	public void anagramsFromStringArray(String string, String givenString, char[] givenCharArray,
 			String string1) {
 		char[] arrayForSort = string.toLowerCase().toCharArray();
 		Arrays.sort(arrayForSort);
@@ -54,7 +37,7 @@ public class Q3Anagram {
 
 	}
 
-	private String onlyAlphabates(String string, String string1) {
+	public String onlyAlphabates(String string, String string1) {
 		for (int i = 0; i < string1.length(); i++) {
 			Character character = string1.charAt(i);
 			if ((character >= 65 && character <= 90) || (character >= 97 && character <= 122))
@@ -64,13 +47,13 @@ public class Q3Anagram {
 		return string;
 	}
 
-	private char[] sortingInput(String givenString) {
+	public char[] sortingInput(String givenString) {
 		char[] givenCharArray = givenString.toCharArray();
 		Arrays.sort(givenCharArray);
 		return givenCharArray;
 	}
 
-	private String giinputWord(String givenString, String givenString1) {
+	public String giinputWord(String givenString, String givenString1) {
 		for (int i = 0; i < givenString1.length(); i++) {
 			Character character = givenString1.charAt(i);
 			if ((character >= 65 && character <= 90) || (character >= 97 && character <= 122))
