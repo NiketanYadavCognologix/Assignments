@@ -49,7 +49,7 @@ public class Main {
 			ProductInputParser inputParser = new ProductInputParser();
 
 			// method getting list of Products into arrayList
-			List<Product> productsList = inputParser.productCSVParser(inputFilePath);
+			final List<Product> productsList = inputParser.productCSVParser(inputFilePath);
 
 			// class for calculate required operation on product
 			OudatedVersionCalculator poductVersionCalculator = new OudatedVersionCalculator(productsList);

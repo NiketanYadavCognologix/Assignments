@@ -2,21 +2,21 @@ package com.cognologix.Part1.Q5Employee.Model;
 
 public class Employee {
 
-	private String EmployeeId;
+	private Integer EmployeeId;
 	private String EmployeeName;
 	private String EmplyeeDept;
-	private String Salary;
+	private Integer Salary;
 	public Employee() {}
-	public Employee(String employeeId, String employeeName, String emplyeeDept, String salary) {
+	public Employee(Integer employeeId, String employeeName, String emplyeeDept, Integer salary) {
 		EmployeeId = employeeId;
 		EmployeeName = employeeName;
 		EmplyeeDept = emplyeeDept;
 		Salary = salary;
 	}
-	public String getEmployeeId() {
+	public Integer getEmployeeId() {
 		return EmployeeId;
 	}
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		EmployeeId = employeeId;
 	}
 	public String getEmployeeName() {
@@ -31,10 +31,10 @@ public class Employee {
 	public void setEmplyeeDept(String emplyeeDept) {
 		EmplyeeDept = emplyeeDept;
 	}
-	public String getSalary() {
+	public Integer getSalary() {
 		return Salary;
 	}
-	public void setSalary(String salary) {
+	public void setSalary(Integer salary) {
 		Salary = salary;
 	}
 	@Override

@@ -11,12 +11,9 @@ public class StudentMapper {
 
 		Student student = new Student();
 		
-		Integer studentId = Integer.parseInt(splittedString[0].trim());
-		Integer studentMarks = Integer.parseInt(splittedString[2].trim());
-
-		student.setStudentId(studentId);
+		student.setStudentId(Integer.parseInt(splittedString[0].trim()));
 		student.setName(splittedString[1]);
-		student.setMarks(studentMarks);
+		student.setMarks(Integer.parseInt(splittedString[2].trim()));
 		return student;
 		
 	}

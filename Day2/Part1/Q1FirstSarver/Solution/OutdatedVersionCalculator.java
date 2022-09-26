@@ -26,21 +26,21 @@ public class OutdatedVersionCalculator {
 	public List<Server> getLatestVersionUsingServer(Set<String> softwareSet) {
 		List<Server> latestVersionUsingServer = new ArrayList<>();
 		for (String software : softwareSet) {
-			String maxVersion = "";
-			Server maxVersionSoftware = null;
-			for (int i = 0; i < serverList.size(); i++) {
-				if (serverList.get(i).getSoftwreName().equals(software)) {
+			String maximumVersion = "";
+			Server maximumVersionSoftware = null;
+			for (Server serverFromListOfServer :serverList) {
+				if (serverFromListOfServer.getSoftwreName().equals(software)) {
 					for (int j = 0; j < serverList.size(); j++) {
 
-						if (serverList.get(i).getVersion().compareTo(maxVersion) > 0) {
-							maxVersion = serverList.get(i).getVersion();
-							maxVersionSoftware = serverList.get(i);
+						if (serverFromListOfServer.getVersion().compareTo(maximumVersion) > 0) {
+							maximumVersion = serverFromListOfServer.getVersion();
+							maximumVersionSoftware = serverFromListOfServer;
 						}
 					}
 				}
 			}
 
-			latestVersionUsingServer.add(maxVersionSoftware);
+			latestVersionUsingServer.add(maximumVersionSoftware);
 		}
 
 		return latestVersionUsingServer;
@@ -49,13 +49,13 @@ public class OutdatedVersionCalculator {
 	public void printOutDatedVersionServer(List<Server> latestVersionServer) {
 		List<Server> outDatedVersionSoftwareList=new ArrayList<Server>();
 		for (Server server : latestVersionServer) {
-			Integer cnt = 0;
-			for (int i = 0; i < serverList.size(); i++) {
-				if(server.getSoftwreName().equals(serverList.get(i).getSoftwreName()))
+			Integer count = 0;
+			for (Server serverFromListOfServer :serverList) {
+				if(server.getSoftwreName().equals(serverFromListOfServer.getSoftwreName()))
 				{
-					if(!server.getVersion().equals(serverList.get(i).getVersion())&&cnt<1)
-						cnt++;
-					else if(!server.getVersion().equals(serverList.get(i).getVersion()))
+					if(!server.getVersion().equals(serverFromListOfServer.getVersion())&&count<1)
+						count++;
+					else if(!server.getVersion().equals(serverFromListOfServer.getVersion()))
 						outDatedVersionSoftwareList.add(server);
 				}
 			}

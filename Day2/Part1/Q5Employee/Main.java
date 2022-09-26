@@ -35,7 +35,7 @@ public class Main {
 		String inputFilePath="/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q5Employee/files/input.csv";
 		
 		// method in EmployeeInputParser class getting list of employees
-		List<Employee> employeesList=inputParser.employeeCSVParser(inputFilePath);
+		final List<Employee> employeesList=inputParser.employeeCSVParser(inputFilePath);
 		
 		// class for calculating the highest pay
 		HighestPayEmployeeCalculator highestPayCalculator=new HighestPayEmployeeCalculator(employeesList);

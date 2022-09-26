@@ -35,16 +35,16 @@ public class Main {
 		String inputFilePath="/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q1FirstSarver/files/input.csv";
 		
 		// method in ServerInputParser class returns list of server's
-		List<Server> serversList=inputParser.ServerCSVParser(inputFilePath);
+		final List<Server> serversList=inputParser.ServerCSVParser(inputFilePath);
 		
 		// class calculates the versions
 		OutdatedVersionCalculator  versionCalculator=new OutdatedVersionCalculator(serversList);
 		
 		// method in class OutdatedVersionCalculator returns the set of versions
-		Set<String> softwareSet=versionCalculator.setOfSoftwareNames();
+		final Set<String> softwareSet=versionCalculator.setOfSoftwareNames();
 		
 		// method in lass OutdatedVersionCalculator returns the latest version software server 
-		List<Server> latestVersionServer=versionCalculator.getLatestVersionUsingServer(softwareSet);
+		final List<Server> latestVersionServer=versionCalculator.getLatestVersionUsingServer(softwareSet);
 
 		// method in lass OutdatedVersionCalculator  prints the out dated version used minimum two times
 		versionCalculator.printOutDatedVersionServer(latestVersionServer);

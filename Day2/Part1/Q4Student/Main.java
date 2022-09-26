@@ -22,26 +22,22 @@ Write a program to compute the average marks scored across all subjects by the s
 public class Main {
 
 	public static void main(String[] args) {
-		
-//		String[] input = { "22, Data Structures,45", "23, English,52", "22, English,51", "26, Data Structures,72",	// by input string array
-//				"23, Data Structures,61", "24, English,81" };
-		
-		StudentInputParser inputParser=new StudentInputParser();						//  class to parse file input into list
+		//  class to parse file input into list
+		StudentInputParser inputParser=new StudentInputParser();						
 		
 		String pathOfFile="/home/niketanyadav/eclipse-workspace/Testing/Q4 AvarageMarksCalculator/src/com/cognologix/Part1/Q4Student/files/input.csv";
-		List<Student> studentsList=inputParser.parseCSVFile(pathOfFile);
 		
-		/* String array reading method */
-//		List<Student> studentsList = inputParser.parseArray(input);						// by input string array
-
+		// method in StudentInputParser return the student array list
+		final List<Student> studentsList=inputParser.parseCSVFile(pathOfFile);
+		
+		// class calculate average marks
 		AvarageMarksCalculator student=new AvarageMarksCalculator(studentsList);		// class contains studentList as parameter
-		/*Getting the lowest id student*/
-		final Student lowestIdStudent=student.getLowestIdStudent(studentsList);
+		
+		// method in AvarageMarksCalculator returns lowest id student
+		final Student lowestIdStudent=student.getLowestIdStudent();
 				
-		/*Average marks scored across all subjects by the student with the lowest ID*/
-		 final Double avarageMarks= student.getAverageMarks(lowestIdStudent,studentsList);
+		//  method in AvarageMarksCalculator calculate average marks of given student
+		student.getAverageMarks(lowestIdStudent);
 
-		/* Printing the Result */
-		student.printResult(avarageMarks,lowestIdStudent);
 	}
 }

@@ -1,9 +1,7 @@
 package com.cognologix.Part1.Q4Student.Solution;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.cognologix.Part1.Q4Student.Mapper.StudentMapper;
 import com.cognologix.Part1.Q4Student.Model.Student;
 
 public class AvarageMarksCalculator {
@@ -15,22 +13,10 @@ public class AvarageMarksCalculator {
 		this.studentArrayList = studentArrayList;
 	}
 
-	public List<Student> mapInputArrayToList(String[] input) {
-
-		List<Student> studentArrayList = new ArrayList<Student>(); //
-
-		for (int i = 0; i < input.length; i++) {
-			Student student = StudentMapper.map(input[i]);
-			studentArrayList.add(student);
-		}
-		return studentArrayList;
-
-	}
-
-	public Student getLowestIdStudent(List<Student> students) {
+	public Student getLowestIdStudent() {
 		Student lowestIdStudent = new Student();
 		Integer lowestId = Integer.MAX_VALUE;
-		for (Student student : students) {
+		for (Student student : studentArrayList) {
 			if (student.getStudentId() < lowestId) {
 				lowestId = student.getStudentId();
 				lowestIdStudent = student;
@@ -39,18 +25,20 @@ public class AvarageMarksCalculator {
 		return lowestIdStudent;
 	}
 
-	public Double getAverageMarks(Student lowestIdStudent, List<Student> studentsList) {
+	public void getAverageMarks(Student lowestIdStudent) {
 		Double totalMarks = 0.0;
-		Integer subjectsCount = (int) studentsList.stream()
+		Integer subjectsCount = (int) studentArrayList.stream()
 												.filter(student -> student.getStudentId().equals(lowestIdStudent.getStudentId()))
 												.count();
 
-		for (Student student : studentsList) {
+		for (Student student : studentArrayList) {
 			if (student.getStudentId() == lowestIdStudent.getStudentId()) {
 				totalMarks += student.getMarks();
 			}
 		}
-		return totalMarks / subjectsCount;
+		Double averageMarks=totalMarks / subjectsCount;
+		printResult(averageMarks,lowestIdStudent);
+
 	}
 
 	public void printResult(Double avarageMarks, Student lowestIdStudent) {

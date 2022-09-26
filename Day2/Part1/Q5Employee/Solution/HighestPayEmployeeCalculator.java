@@ -31,39 +31,20 @@ public class HighestPayEmployeeCalculator {
 		for (String department : departmentNamesSet) {
 			Integer maximumSalary = 0;
 			Employee maximumSalaryEmployee = null;
-			for (int i = 0; i < employeesList.size(); i++) {
+			for (Employee employeeFromEmployeeList: employeesList) {
 
-				String salaryString = "";
-				String inputSalaryString = employeesList.get(i).getSalary();
+				Integer salary = employeeFromEmployeeList.getSalary();
 
-				/*
-				 * we can use trim method but if any alphabet's or symbol is skipped by this
-				 * method
-				 */
-				salaryString = getOnlyNumbers(salaryString, inputSalaryString);
-
-				Integer salary = Integer.parseInt(salaryString);
-
-				if (employeesList.get(i).getEmplyeeDept().equals(department)) {
+				if (employeeFromEmployeeList.getEmplyeeDept().equals(department)) {
 					if (maximumSalary < salary) {
 						maximumSalary = salary;
-						maximumSalaryEmployee = employeesList.get(i);
+						maximumSalaryEmployee = employeeFromEmployeeList;
 					}
 				}
 			}
-
-//			System.out.println(maximumSalaryEmployee.getEmplyeeDept()+" : "+maximumSalaryEmployee.getEmployeeId());
 			highestPayEmployees.add(maximumSalaryEmployee);
 		}
 		return highestPayEmployees;
-	}
-
-	private String getOnlyNumbers(String salaryString, String inputSalaryString) {
-		for (int j = 0; j < inputSalaryString.length(); j++) {
-			if (inputSalaryString.charAt(j) >= 48 && inputSalaryString.charAt(j) <= 57)
-				salaryString += (char) (inputSalaryString.charAt(j));
-		}
-		return salaryString;
 	}
 
 	public void printResult(List<Employee> highestPayEmployeesList) {

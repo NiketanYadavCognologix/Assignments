@@ -35,13 +35,13 @@ public class Main {
 		String inputFilePath="/home/niketanyadav/eclipse-workspace/Testing/Assignment2/src/com/cognologix/Part1/Q6Candidade/files/input.csv";
 		
 		// method in CandidateInputParser class returns list of Candidate information
-		List<Candidade> candidadesList=inputParser.candidadeCSVPaser(inputFilePath);
+		final List<Candidade> candidadesList=inputParser.candidadeCSVPaser(inputFilePath);
 		
 		// class for calculating the highest Vote		
 		VoteCalculator voteCalculator=new VoteCalculator(candidadesList);
 
 		// method in class VoteCalculator returns set of consistencies
-		Set<String> consistencies=voteCalculator.getConsistencies();
+		final Set<String> consistencies=voteCalculator.getConsistencies();
 		
 		// method in class VoteCalculator gives the maximum getting vote candidate
 		voteCalculator.getMaximumGettingVoteCandidates(consistencies);

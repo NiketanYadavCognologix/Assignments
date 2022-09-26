@@ -9,10 +9,10 @@ public class EmployeeMapper {
 		
 		Employee empployee=new Employee();
 		
-		empployee.setEmployeeId(empployeeInsert[0].trim());
+		empployee.setEmployeeId(Integer.parseInt(empployeeInsert[0].trim()));
 		empployee.setEmployeeName(empployeeInsert[1]);
 		empployee.setEmplyeeDept(empployeeInsert[2]);
-		empployee.setSalary(empployeeInsert[3].trim());
+		empployee.setSalary(Integer.parseInt(empployeeInsert[3].trim()));
 		
 		return empployee;
 

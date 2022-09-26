@@ -36,15 +36,15 @@ public class DiscontedProductCalcolator {
 				Integer minPrice = Integer.MAX_VALUE;
 				Customer maxDiscontGettingCustomer = null;
 
-				for (int i = 0; i < customerList.size(); i++) {
+				for (Customer customerFromCustomerList : customerList) {
 
-					if (productName.contentEquals(customerList.get(i).getProductName())) {
+					if (productName.contentEquals(customerFromCustomerList.getProductName())) {
 
-						Integer productPrice = customerList.get(i).getPrice();
+						Integer productPrice = customerFromCustomerList.getPrice();
 						
 						if (productPrice < minPrice) {
 							minPrice = productPrice;
-							maxDiscontGettingCustomer = customerList.get(i);
+							maxDiscontGettingCustomer = customerFromCustomerList;
 						}
 					}
 				}

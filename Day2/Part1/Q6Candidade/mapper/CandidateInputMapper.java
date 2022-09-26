@@ -8,13 +8,10 @@ public class CandidateInputMapper {
 
 		Candidade candidade = new Candidade();
 
-		Integer candidadeId = Integer.valueOf(candidadeInfo[0].trim());
-		Integer vote = Integer.valueOf(candidadeInfo[3].trim());
-
-		candidade.setCandidateID(candidadeId);
+		candidade.setCandidateID(Integer.valueOf(candidadeInfo[0].trim()));
 		candidade.setName(candidadeInfo[1]);
 		candidade.setConstituency(candidadeInfo[2]);
-		candidade.setVotes(vote);
+		candidade.setVotes(Integer.valueOf(candidadeInfo[3].trim()));
 		return candidade;
 	}
 }

@@ -31,14 +31,14 @@ public class OudatedVersionCalculator {
 
 			Product letestVersionProduct = null;
 
-			for (int i = 0; i < productsList.size(); i++) {
+			for (Product productFromProductList: productsList) {
 
-				if (set.contentEquals(productsList.get(i).getLibraryName())) {
-					Integer maxVersion = productsList.get(i).getLibraryVersion();
+				if (set.contentEquals(productFromProductList.getLibraryName())) {
+					Integer maxVersion = productFromProductList.getLibraryVersion();
 
 					if (maxVersion > letestVersion) {
 						letestVersion = maxVersion;
-						letestVersionProduct = productsList.get(i);
+						letestVersionProduct = productFromProductList;
 					}
 				}
 			}
@@ -51,9 +51,9 @@ public class OudatedVersionCalculator {
 		Set<String> finalAnswer = new TreeSet<String>();
 
 		for (Product product: productsList) {
-			for (int j = 0; j < letestVersionLibrariesList.size(); j++) {
-				if ((letestVersionLibrariesList.get(j).getLibraryName().equals(product.getLibraryName()))
-						&& (!letestVersionLibrariesList.get(j).getLibraryVersion()
+			for (Product letestVersionLibrary: letestVersionLibrariesList) {
+				if ((letestVersionLibrary.getLibraryName().equals(product.getLibraryName()))
+						&& (!letestVersionLibrary.getLibraryVersion()
 								.equals(product.getLibraryVersion()))) {
 					finalAnswer.add(product.getProductName());
 
