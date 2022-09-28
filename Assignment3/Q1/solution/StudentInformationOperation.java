@@ -56,11 +56,18 @@ public class StudentInformationOperation {
 	}
 	public Map<Integer, Student> getStudentsIntoMap() {
 		Map<Integer, Student> studentsMap=new HashMap<Integer, Student>();
-		for (Student student : studentsList) 
-		{
-			studentsMap.put(student.getStudentId(), student);
-		}
+
+		studentsMap =studentsList.stream()
+		.collect(Collectors.toMap(Student::getStudentId,
+									(student) -> student,
+									(oldStudentName, newStudentName) -> newStudentName));
+
+		printMyMap(studentsMap);
 		return studentsMap;
+	}
+	private void printMyMap(Map<Integer, Student> studentsMap) {
+		System.out.println(studentsMap);
+		
 	}
 
 }

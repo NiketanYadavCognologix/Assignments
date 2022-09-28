@@ -54,7 +54,7 @@ public class Main {
 		
 		System.out.println("\n***********************students Map***************************");
 		Map<Integer, Student> studentMap=studentInformationOperation.getStudentsIntoMap();
-		System.out.println(studentMap);
+		
 
 	}
 
