@@ -48,9 +48,6 @@ public class ElectionVoteCalculatorTest {
 		
 		// class for calculating the highest Vote		
 		ElectionVoteCalculatorService voteCalculator=new ElectionVoteCalculatorService(candidadesList);
-
-		// method in class VoteCalculator returns set of consistencies
-		final Set<String> consistencies=voteCalculator.getConsistencies();
 		
 		// method in class VoteCalculator gives the maximum getting vote candidate
 		final Map<String, Candidate> getHighrstVoteCandidate=voteCalculator.getIdOfHighestVoteGettingCandidate();

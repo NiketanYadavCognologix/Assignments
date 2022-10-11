@@ -1,57 +1,30 @@
 package com.cognologix.services;
 
-import java.util.ArrayList;
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.maxBy;
+
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Map;
+import java.util.Optional;
 
 import com.cognologix.model.Employee;
 
 
 public class EmployeeService {
 
-	List<Employee> employeesList;
+	List<Employee> employees;
 
 	public EmployeeService(List<Employee> employeesList) {
-		this.employeesList = employeesList;
+		this.employees = employeesList;
 	}
-
-	public Set<String> getDepatments() {
-		Set<String> departmentNames = new TreeSet<String>();
-
-		for (Employee employee : employeesList) {
-			departmentNames.add(employee.getEmplyeeDept());
-		}
-		return departmentNames;
-	}
-
-	public List<Employee> getHighestPayEmployeeInEachDepartment(Set<String> departmentNamesSet) {
-
-		List<Employee> highestPayEmployees = new ArrayList<Employee>();
-
-		for (String department : departmentNamesSet) {
-			Integer maximumSalary = 0;
-			Employee maximumSalaryEmployee = null;
-			for (Employee employeeFromEmployeeList: employeesList) {
-
-				Integer salary = employeeFromEmployeeList.getSalary();
-
-				if (employeeFromEmployeeList.getEmplyeeDept().equals(department)) {
-					if (maximumSalary < salary) {
-						maximumSalary = salary;
-						maximumSalaryEmployee = employeeFromEmployeeList;
-					}
-				}
-			}
-			highestPayEmployees.add(maximumSalaryEmployee);
-		}
+	public Map<String, Employee> getHighestPayEmployeeInEachDepartment() {		
+		Map<String, Employee> highestPayEmployees = employees.stream()
+				.collect(groupingBy(employee -> employee.getEmplyeeDept(),
+						collectingAndThen(maxBy(comparingInt(c -> c.getSalary())), Optional::get)));
 		return highestPayEmployees;
 	}
 
-	public void printResult(List<Employee> highestPayEmployeesList) {
-		for (Employee employee : highestPayEmployeesList) {
-			System.out.println(employee.getEmplyeeDept() + " ---> " + employee.getEmployeeId());
-		}
-	}
 }
 

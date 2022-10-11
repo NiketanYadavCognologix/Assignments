@@ -1,7 +1,7 @@
 package com.cognologix;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import com.cognologix.mapper.EmployeeMapper;
 import com.cognologix.model.Employee;
@@ -49,14 +49,11 @@ public class EmployeeSalaryTest {
 		// class for calculating the highest pay
 		EmployeeService highestPayCalculator=new EmployeeService(employees);
 		
-		// method in class HighestPayEmployeeCalculator gives the set of department name
-		final Set<String> departmentNamesSet=highestPayCalculator.getDepatments();
-		
 		// method to get highest pay employee from employee from each department arrayList
-		final List<Employee> highestPayEmployeesList=highestPayCalculator.getHighestPayEmployeeInEachDepartment(departmentNamesSet);
+		final Map<String, Employee> highestPayEmployeesList=highestPayCalculator.getHighestPayEmployeeInEachDepartment();
+		highestPayEmployeesList.entrySet().stream().forEach(n -> System.out.println(n.getKey()+" : "+n.getValue().getEmployeeId()));
 		
-		// printing the result by giving the list of highest pay employee
-		highestPayCalculator.printResult(highestPayEmployeesList);
+		
 			
 	}
 }
