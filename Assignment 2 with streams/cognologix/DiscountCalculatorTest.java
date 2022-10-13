@@ -39,7 +39,7 @@ Meena Kothari
 Explanation: For the Samsung Battery, Rs 900 is the most discounted price, and Mohit Gupta bought it. For the Earphones, Rs 500 is the most 
 discounted price, and Nina Kothari bought it. For the USB cable, Rs 100 is the most discounted price,  and Meena Kothari bought it. 
 Note: For the Phone Cover and the Motorola Battery, there are no discounted prices.*/
-public class DiscountCalculatorService {
+public class DiscountCalculatorTest {
 
 	public static void main(String[] args) {
 	
