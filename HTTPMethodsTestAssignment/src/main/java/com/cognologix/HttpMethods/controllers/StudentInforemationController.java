@@ -11,11 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognologix.HttpMethods.modules.Student;
@@ -40,13 +38,7 @@ public class StudentInforemationController {
 		
 	}
 	
-	@PostMapping("/add")
-	public String postStudent(@RequestBody List<Student> studentsList)
-	{
-		students=studentsList;
-//		System.out.println("niketan--->"+id);
-		return "POST : HTTP method....Student added successfully";
-	}
+	
 	@PutMapping("/update{id}")
 	public List<Student> putStudent(@PathVariable Integer id,@RequestBody Student updatedStudent)
 	{
