@@ -39,7 +39,7 @@ public class StudentOpertionService {
 		if (stuOptional.isPresent()) {
 			return stuOptional.get();
 		}
-		throw new IdNotFoundException("Id is null...");
+		throw new IdNotFoundException("This id student is not found...");
 	}
 
 	public Integer deleteStudent(Integer id) {

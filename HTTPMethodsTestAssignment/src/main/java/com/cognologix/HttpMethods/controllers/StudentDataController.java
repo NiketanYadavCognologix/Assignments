@@ -2,6 +2,7 @@ package com.cognologix.HttpMethods.controllers;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +22,21 @@ import com.cognologix.HttpMethods.services.StudentOpertionService;
 @RequestMapping("/studentData")
 public class StudentDataController {
 
-	@Autowired
-	StudentOpertionService studentService;
+	@Autowired															//no need to create object here for using methods of class,But
+	StudentOpertionService studentService;								//need to Autowired service class for using methods in service class.
 
-	@PostMapping(value = "/saveAll", consumes = { "application/json", "application/xml" }, produces = {
-			"application/json", "application/xml" })
+	//get the output and input JSON OR xml format
+	@PostMapping(value = "/saveAll",
+			consumes = { "application/json", "application/xml" },		//get from UI, mostly used in PostMapping 
+			produces = {"application/json", "application/xml" })		//returns in UI, mostly used in GetMapping
 	public ResponseEntity<List<Student>> saveAllStudent(@RequestBody List<Student> students) {
 		List<Student> StudList = students;
 		studentService.saveAllStudent(students);
-		return new ResponseEntity<List<Student>>(StudList, HttpStatus.OK);
+		return new ResponseEntity<List<Student>>(StudList, HttpStatus.OK); //must create new ResponseEntity.
 	}
 
-	@PostMapping(value = "/save", produces = { "application/json", "application/xml" })
+	@PostMapping(value = "/save", 
+			consumes = { "application/json", "application/xml" }) 		//also can use produces here.
 	public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
 		studentService.saveStudent(student);
 		return new ResponseEntity<Student>(student, HttpStatus.OK);
@@ -44,24 +48,26 @@ public class StudentDataController {
 	}
 
 	@GetMapping(value = "/getByID/{id}",
-			produces = { "application/json", "application/xml" })
-	public ResponseEntity<Student> getStudentById(@PathVariable Integer id) {
-		return new ResponseEntity<Student>(studentService.getSudentById(id),HttpStatus.OK);
+			produces = { "application/json", "application/xml" })		
+	public ResponseEntity<Object> getStudentById(@PathVariable Integer id) {
+		JSONObject studentJson = new JSONObject();											//for getting String as well as JSON object in return in Postman
+		studentJson.put("Student get sucessfully...", studentService.getSudentById(id));
+
+		System.out.println(studentJson);
+		return new ResponseEntity<Object>(studentJson.toMap(), HttpStatus.OK);				//toMap() perform mapping of JSON and String for Postman
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteStudentById(@PathVariable Integer id)
-	{
+	public ResponseEntity<String> deleteStudentById(@PathVariable Integer id) {
 		studentService.deleteStudent(id);
-		return new ResponseEntity<String>("Student deleted sucessfully..",HttpStatus.OK);
-		
+		return new ResponseEntity<String>("Student deleted sucessfully..", HttpStatus.OK);
+
 	}
+
 	@PutMapping("/update")
-	public ResponseEntity<Student> updateStudent(@RequestBody Student student)
-	{
+	public ResponseEntity<Student> updateStudent(@RequestBody Student student) {	//only save updated object for updating.
 		studentService.saveStudent(student);
-		return new ResponseEntity<Student>(student,HttpStatus.OK);
+		return new ResponseEntity<Student>(student, HttpStatus.OK);
 	}
-	
 
 }

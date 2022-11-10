@@ -24,12 +24,15 @@ public class SwaggerConfiguration {
 				.build();
 	}
 	public ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("CRUD basic operations by Niketan")	//custom (user define) name for Page Title
-				.description("Simple understandable swagger application")		//custom (user define) description
-				.termsOfServiceUrl("http://www.cognocrud.com")			//custom (user define) url for terms
-				.license("Licence @ Niketan")									//custom (user define) license name
-				.licenseUrl("http://www.cognocrud.com/licence")					//custom (user define) license url
-				.version("1.0")
+		return new ApiInfoBuilder().title("CRUD basic operations by Niketan")	//custom (programmer define) name for Page Title
+				.description("Simple understandable swagger application")		//custom (programmer define) description
+				.termsOfServiceUrl("http://www.cognocrud.com")					//custom (programmer define) url for terms
+				.license("Licence @ Niketan")									//custom (programmer define) license name
+				.licenseUrl("http://www.cognocrud.com/licence")					//custom (programmer   define) license url
+				.version("1.0")													//custom version
 				.build();
+		
+		//here custom values are the programmer given values, u
+		
 	}
 }
