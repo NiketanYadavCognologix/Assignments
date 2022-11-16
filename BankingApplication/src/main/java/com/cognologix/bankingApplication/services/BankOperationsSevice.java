@@ -1,22 +1,25 @@
 package com.cognologix.bankingApplication.services;
 
+import com.cognologix.bankingApplication.entities.Account;
 import com.cognologix.bankingApplication.entities.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BankOperationsSevice {
 
-    Integer createAccount(Customer customer);
+    void saveObject(Account account);
 
-    Integer deposite(Double ammountForDeposite, Integer customerId);
+    List<Account> getAllCustomers();
 
-    Integer withdrawal(Double ammountForWithdraw, Integer customerId);
+    void deleteCustomer(Integer accountId);
 
-    Double balenceInquiry(Integer customerId);
+    List<Account> getByCustomerId(Integer accountId);
 
-    Customer updateInformation(Customer customerForUpdate);
+    void deposit(Integer accountId, Double ammount);
 
-    Customer showCustomerDetails(Integer accountId);
+    void withdraw(Integer accountId, Double ammount);
 
+    void moneyTransfer(Integer customerIdWhoSendMoney,Integer customerIdWhoRecieveMoney,Double ammountForTransfer);
 }

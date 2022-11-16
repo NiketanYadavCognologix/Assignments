@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer {
 	
-//	@Id
+	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@NotBlank(message = "Customer id cannot blank")
 	private Integer customerId;
@@ -50,14 +50,12 @@ public class Customer {
 
 //	@OneToOne(cascade= CascadeType.ALL)
 
-	private Account account;
-
 	@Override
 	public String toString() {
 		String messageBody = "customerName={0} | accountNumber={1} | dateOfBirth={2} | " +
-				"adharNumber={3} | PanNumber={4} | EmailId={5} | gender={6} | Account={7}";
+				"adharNumber={3} | PanNumber={4} | EmailId={5} | gender={6}";
 		return java.text.MessageFormat.format(messageBody, customerName, accountNumber,
-				dateOfBirth, adharNumber,panCardNumber,emailId,gender,account);
+				dateOfBirth, adharNumber,panCardNumber,emailId,gender);
 	}
 
 }

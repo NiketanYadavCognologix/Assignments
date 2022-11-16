@@ -17,14 +17,14 @@ public class SignUpController {
     @Autowired
     private BankOperationsSevice bankOperationsSevice;
 
-    @PostMapping(value = "/newAccount",
-            consumes = { "application/json", "application/xml" },
-            produces = {"application/json", "application/xml" })
-    public ResponseEntity<?> createAccount(@RequestBody Customer customer) {
-        JSONObject signUpResult=new JSONObject();
-        bankOperationsSevice.createAccount(customer);
-        signUpResult.put("Account created successfully...",customer);
-        System.out.println(signUpResult);
-        return new ResponseEntity<JSONObject>(signUpResult, HttpStatus.CREATED);
-    }
+//    @PostMapping(value = "/newAccount",
+//            consumes = { "application/json", "application/xml" },
+//            produces = {"application/json", "application/xml" })
+//    public ResponseEntity<?> createAccount(@RequestBody Customer customer) {
+//        JSONObject signUpResult=new JSONObject();
+//        bankOperationsSevice.createAccount(customer);
+//        signUpResult.put("Account created successfully...",customer);
+//        System.out.println(signUpResult);
+//        return new ResponseEntity<JSONObject>(signUpResult, HttpStatus.CREATED);
+//    }
 }

@@ -14,17 +14,17 @@ public class CreateAccount {
     public void testCreateAccout(){
         System.out.println("Testing object get created.....");
 
-        Customer customer1=new Customer();
-        customer1.set
-        customer1.set
-        customer1.set
-        customer1.set
-        customer1.set
-        customer1.set
-        customer1.set
-        customer1.set
-
-      Integer resultTocheck = bankOperationsSevice.createAccount(customer1);
-      Integer resultGetting= bankOperationsSevice.createAccount();
+//        Customer customer1=new Customer();
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//        customer1.set
+//
+//      Integer resultTocheck = bankOperationsSevice.createAccount(customer1);
+//      Integer resultGetting= bankOperationsSevice.createAccount();
     }
 }

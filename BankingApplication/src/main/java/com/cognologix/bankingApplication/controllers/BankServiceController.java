@@ -1,7 +1,9 @@
 package com.cognologix.bankingApplication.controllers;
 
+import java.util.List;
 import java.util.Map;
 
+import com.cognologix.bankingApplication.entities.Account;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +22,41 @@ public class BankServiceController {
     @Autowired
     BankOperationsSevice bankOperationsSevice;
 
-    @PostMapping(value = "/deposite")
-    public ResponseEntity<?> depositeAmmount(@PathParam(value = "ammount") Double ammountToDeposite,@PathParam(value = "id") Integer id) {
-        Integer result = bankOperationsSevice.deposite(ammountToDeposite, id);
-        bankOperationsSevice.deposite(ammountToDeposite, id);
-        if (result != 0)
-            return new ResponseEntity<String>("Ammount deposite sucessfully...", HttpStatus.OK);
-        else
-            return new ResponseEntity<String>("Ammount not deposited...", HttpStatus.ACCEPTED);
-
+    @PostMapping("/save")
+    public ResponseEntity<?> saveAccount(@RequestBody Account account){
+        bankOperationsSevice.saveObject(account);
+        return new ResponseEntity<>("Save successfully..",HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteCustomerById(@PathParam(value = "id") Integer id){
+        bankOperationsSevice.deleteCustomer(id);
+        return new ResponseEntity<>("Customer deleted successdully....",HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/deposite")
+    public ResponseEntity<?> depositeAmmount(@PathParam(value = "ammount") Double ammountToDeposite,@PathParam(value = "id") Integer id) {
+         bankOperationsSevice.deposit( id,ammountToDeposite);
+            return new ResponseEntity<String>("Ammount deposite sucessfully...", HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/withdrawsave")
+    public ResponseEntity<?> withdrawalAmmount(@PathParam(value = "ammount") Double ammountToWithdraw,@PathParam(value = "id") Integer id) {
+        bankOperationsSevice.withdraw( id,ammountToWithdraw);
+        return new ResponseEntity<String>("Ammount withdraw sucessfully...", HttpStatus.OK);
+    }
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAllAccounts()
+    {
+        return new ResponseEntity<List<Account>>(bankOperationsSevice.getAllCustomers(),HttpStatus.OK);
+    }
+
+    @PutMapping("/transfer")
+    public ResponseEntity<?> moneyTransfer(@PathParam(value = "senderId") Integer senderId,@PathParam(value = "recieverId") Integer recieverId,@PathParam(value = "ammount") Double ammount){
+        bankOperationsSevice.moneyTransfer(senderId,recieverId,ammount);
+        return new ResponseEntity<>("Ammount successfully transfer...",HttpStatus.OK);
+    }
+
 
 //    @PutMapping(value = "/deposite")
 //    public ResponseEntity<?> depositeAmmount(@PathParam(value = "id") Integer id, @PathParam(value = "ammount") Double ammountToDeposite) {
