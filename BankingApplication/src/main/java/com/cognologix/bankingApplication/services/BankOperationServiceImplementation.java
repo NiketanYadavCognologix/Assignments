@@ -14,8 +14,9 @@ public class BankOperationServiceImplementation implements BankOperationsSevice 
     DataSoucrce dataSoucrce;
 
     @Override
-    public void saveObject(Account account) {
+    public Account saveObject(Account account) {
         dataSoucrce.saveObject(account);
+        return account;
     }
 
     @Override
@@ -24,12 +25,12 @@ public class BankOperationServiceImplementation implements BankOperationsSevice 
     }
 
     @Override
-    public void deleteCustomer(Integer accountId) {
-        dataSoucrce.deleteCustomer(accountId);
+    public Account deleteCustomer(Integer accountId) {
+        return  dataSoucrce.deleteCustomer(accountId);
     }
 
     @Override
-    public List<Account> getByCustomerId(Integer accountId) {
+    public Account getByCustomerId(Integer accountId) {
         return dataSoucrce.getById(accountId);
     }
 
@@ -46,5 +47,10 @@ public class BankOperationServiceImplementation implements BankOperationsSevice 
     @Override
     public void moneyTransfer(Integer customerIdWhoSendMoney, Integer customerIdWhoRecieveMoney, Double ammountForTransfer) {
         dataSoucrce.transferMoney(customerIdWhoSendMoney, customerIdWhoRecieveMoney, ammountForTransfer);
+    }
+
+    @Override
+    public Double getCurrentBalance(Integer id) {
+        return dataSoucrce.getCurrentBalance(id);
     }
 }

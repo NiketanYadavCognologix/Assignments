@@ -3,10 +3,9 @@ package com.cognologix.bankingApplication.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,7 +22,8 @@ public class Account {
     @NotNull(message = "Type of account cannot null")
     private String accountType;
 
-    private Double balence;
+    @NotEmpty
+    private Double balance;
 
     @NotNull(message = "Type of account cannot null")
     private Customer customer;

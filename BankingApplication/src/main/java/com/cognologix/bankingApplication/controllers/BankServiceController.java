@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.cognologix.bankingApplication.entities.Customer;
 import com.cognologix.bankingApplication.services.BankOperationsSevice;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 @RestController
@@ -21,52 +22,50 @@ public class BankServiceController {
 
     @Autowired
     BankOperationsSevice bankOperationsSevice;
+    JSONObject resultSet;
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveAccount(@RequestBody Account account){
-        bankOperationsSevice.saveObject(account);
-        return new ResponseEntity<>("Save successfully..",HttpStatus.OK);
-    }
+    public ResponseEntity<Account> createNewAccount(@Valid @RequestBody Account account) {
+        Account createdAccount = bankOperationsSevice.saveObject(account);
+//        resultSet = new JSONObject();
+//        resultSet.put("Save successfully..", createdAccount);
+//        return new ResponseEntity<JSONObject>(resultSet, HttpStatus.CREATED);
+        return new ResponseEntity<Account>(createdAccount, HttpStatus.CREATED);
 
+    }
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteCustomerById(@PathParam(value = "id") Integer id){
-        bankOperationsSevice.deleteCustomer(id);
-        return new ResponseEntity<>("Customer deleted successdully....",HttpStatus.OK);
+    public ResponseEntity<?> deleteCustomerById(@PathParam(value = "id") Integer id) {
+      Account deletedAccount=  bankOperationsSevice.deleteCustomer(id);
+        resultSet=new JSONObject();
+        resultSet.put("Customer deleted successdully....",deletedAccount);
+        return new ResponseEntity<>(resultSet, HttpStatus.OK);
     }
 
     @PutMapping(value = "/deposite")
-    public ResponseEntity<?> depositeAmmount(@PathParam(value = "ammount") Double ammountToDeposite,@PathParam(value = "id") Integer id) {
-         bankOperationsSevice.deposit( id,ammountToDeposite);
-            return new ResponseEntity<String>("Ammount deposite sucessfully...", HttpStatus.OK);
+    public ResponseEntity<?> depositeAmmount(@PathParam(value = "ammount") Double ammountToDeposite, @PathParam(value = "id") Integer id) {
+        bankOperationsSevice.deposit(id, ammountToDeposite);
+        return new ResponseEntity<String>("Ammount deposite sucessfully...", HttpStatus.OK);
     }
 
     @PutMapping(value = "/withdrawsave")
-    public ResponseEntity<?> withdrawalAmmount(@PathParam(value = "ammount") Double ammountToWithdraw,@PathParam(value = "id") Integer id) {
-        bankOperationsSevice.withdraw( id,ammountToWithdraw);
+    public ResponseEntity<?> withdrawalAmmount(@PathParam(value = "ammount") Double ammountToWithdraw, @PathParam(value = "id") Integer id) {
+        bankOperationsSevice.withdraw(id, ammountToWithdraw);
         return new ResponseEntity<String>("Ammount withdraw sucessfully...", HttpStatus.OK);
     }
+
     @GetMapping("/getAll")
-    public ResponseEntity<?> getAllAccounts()
-    {
-        return new ResponseEntity<List<Account>>(bankOperationsSevice.getAllCustomers(),HttpStatus.OK);
+    public ResponseEntity<?> getAllAccounts() {
+
+        return new ResponseEntity<List<Account>>(bankOperationsSevice.getAllCustomers(), HttpStatus.OK);
     }
+
 
     @PutMapping("/transfer")
-    public ResponseEntity<?> moneyTransfer(@PathParam(value = "senderId") Integer senderId,@PathParam(value = "recieverId") Integer recieverId,@PathParam(value = "ammount") Double ammount){
-        bankOperationsSevice.moneyTransfer(senderId,recieverId,ammount);
-        return new ResponseEntity<>("Ammount successfully transfer...",HttpStatus.OK);
+    public ResponseEntity<?> moneyTransfer(@PathParam(value = "senderId") Integer senderId, @PathParam(value = "recieverId") Integer recieverId, @PathParam(value = "ammount") Double ammount) {
+        bankOperationsSevice.moneyTransfer(senderId, recieverId, ammount);
+        return new ResponseEntity<String >("Ammount successfully transfer...", HttpStatus.OK);
     }
 
-
-//    @PutMapping(value = "/deposite")
-//    public ResponseEntity<?> depositeAmmount(@PathParam(value = "id") Integer id, @PathParam(value = "ammount") Double ammountToDeposite) {
-//        Integer result = bankOperationsSevice.deposite(ammountToDeposite, id);
-//        if (result != 0)
-//            return new ResponseEntity<String>("Ammount deposite sucessfully...", HttpStatus.OK);
-//        else
-//            return new ResponseEntity<String>("Ammount not deposited...", HttpStatus.ACCEPTED);
-//
-//    }
 
 
 //	public Integer deposite(Double ammountForDeposite, Integer customerId);

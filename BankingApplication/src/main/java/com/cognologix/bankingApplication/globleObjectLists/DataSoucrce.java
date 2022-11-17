@@ -1,5 +1,6 @@
 package com.cognologix.bankingApplication.globleObjectLists;
 
+
 import com.cognologix.bankingApplication.entities.Account;
 import com.cognologix.bankingApplication.exceptions.AccountNotAvailableException;
 import com.cognologix.bankingApplication.exceptions.InsufficientBalanceException;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Component
 public class DataSoucrce {
     List<Account> accounts=new ArrayList<>();
@@ -27,20 +29,28 @@ public class DataSoucrce {
     }
 
     //delete customer
-    public void deleteCustomer(Integer accountId){
+    public Account deleteCustomer(Integer accountId){
        accounts= accounts.stream()
                .filter(account -> account.getAccountID()!=accountId)
                .collect(Collectors.toList());
+     Account account=getById(accountId);
+       if(account==null){
+           throw new AccountNotAvailableException("Please enter correct account information, Account for your entered account id is not found...");
+       }else {
+           return account;
+       }
     }
 
     //get customer by id
-    public List<Account> getById(Integer accountId){
-       List<Account> account= accounts.stream()
+    public Account getById(Integer accountId){
+       List<Account> matchingAccount= accounts.stream()
                .filter(customer -> customer.getAccountID()==accountId)
                .collect(Collectors.toList());
-       if(account.isEmpty())
+
+       if(matchingAccount.isEmpty())
            throw new AccountNotAvailableException("Please enter correct account information, Account for your entered account id is not found...");
-        else return account;
+        else
+            return matchingAccount.get(0);
     }
 
     //deposite
@@ -53,9 +63,9 @@ public class DataSoucrce {
             throw new AccountNotAvailableException("Please enter correct account information, Account for your entered account id is not found...");
 
         Account updatedAccount=accountForDeposite.get(0);
-        Double currentBalance=updatedAccount.getBalence();
+        Double currentBalance=updatedAccount.getBalance();
         Double updatedBalence=currentBalance+ammount;
-        accountForDeposite.get(0).setBalence(updatedBalence);
+        accountForDeposite.get(0).setBalance(updatedBalence);
 
         List<Account> finalAccount=accounts.stream()
                 .filter(account -> account.getAccountID()!=accountId).collect(Collectors.toList());
@@ -63,6 +73,7 @@ public class DataSoucrce {
 
     }
 
+    //withdraw method
     public void withdraw(Integer accountId, Double ammount){
         List<Account> accountForWithdraw=accounts.stream()
                 .filter(account -> account.getAccountID()==accountId).collect(Collectors.toList());
@@ -71,10 +82,10 @@ public class DataSoucrce {
             throw new AccountNotAvailableException("Please enter correct account information, Account for your entered account id is not found...");
 
         Account updatedAccount=accountForWithdraw.get(0);
-        Double currentBalance=updatedAccount.getBalence();
+        Double currentBalance=updatedAccount.getBalance();
         if(currentBalance>=ammount) {
             Double updatedBalence = currentBalance - ammount;
-            accountForWithdraw.get(0).setBalence(updatedBalence);
+            accountForWithdraw.get(0).setBalance(updatedBalence);
         }else {
             throw new InsufficientBalanceException("oop's your account has insufficient balance.....");
         }
@@ -89,5 +100,10 @@ public class DataSoucrce {
        withdraw(customerIdWhoSendMoney,ammountForTransfer);
        deposite(customerIdWhoRecieveMoney,ammountForTransfer);
 
+    }
+
+    public Double getCurrentBalance(Integer id) {
+        Account accountForCheckingBalance=getById(id);
+        return accountForCheckingBalance.getBalance();
     }
 }

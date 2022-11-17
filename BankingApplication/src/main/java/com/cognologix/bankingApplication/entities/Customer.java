@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,8 +22,8 @@ import lombok.NoArgsConstructor;
 public class Customer {
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@NotBlank(message = "Customer id cannot blank")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotBlank(message = "Customer id cannot blank")
 	private Integer customerId;
 
 	@NotBlank(message = "Account holder name cannot blank")
@@ -42,7 +43,7 @@ public class Customer {
 	@NotBlank(message = "PAN number cannot blank")
 	private String panCardNumber;
 
-	@NotBlank(message = "Email id cannot blank")
+	@Email(message = "Email id cannot blank")
 	private String emailId;
 
 	@NotBlank(message = "Gender cannot blank")
