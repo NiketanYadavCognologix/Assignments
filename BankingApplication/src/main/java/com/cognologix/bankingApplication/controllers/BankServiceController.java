@@ -27,10 +27,7 @@ public class BankServiceController {
     @PostMapping("/save")
     public ResponseEntity<Account> createNewAccount(@Valid @RequestBody Account account) {
         Account createdAccount = bankOperationsSevice.saveObject(account);
-//        resultSet = new JSONObject();
-//        resultSet.put("Save successfully..", createdAccount);
-//        return new ResponseEntity<JSONObject>(resultSet, HttpStatus.CREATED);
-        return new ResponseEntity<Account>(createdAccount, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
 
     }
     @DeleteMapping("/delete")

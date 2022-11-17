@@ -4,9 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
@@ -14,19 +18,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 //@Entity
 @XmlRootElement
-public class Account {
+public class Account extends Customer {
     @Id
-    @NotNull(message = "Account Id cannot null")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accountID;
 
-    @NotNull(message = "Type of account cannot null")
+//    @NotEmpty(message = "Type of account cannot null")
     private String accountType;
 
-    @NotEmpty
+//    @NotBlank(message = "Account number cannot blank")
+    @Size(min = 10, max = 12, message = "Account number should be 10-12 character")
+    private String accountNumber;
+
+//    @NotNull(message = "Balence cannot null")
     private Double balance;
 
-    @NotNull(message = "Type of account cannot null")
-    private Customer customer;
-
+//    @NotBlank(message = "Customer cannot blank")
+    private Integer customerId;
 
 }
