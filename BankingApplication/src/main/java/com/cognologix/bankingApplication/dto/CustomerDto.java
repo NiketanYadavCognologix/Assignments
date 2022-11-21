@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -20,16 +22,11 @@ public class CustomerDto {
 //    @NotEmpty(message = "Account holder name cannot blank")
     private String customerName;
 
-//    @NotBlank(message = "Account number cannot blank")
-//    @Size(min = 10, max = 12, message = "Account number should be 10-12 character")
-    private String accountNumber;
-
-//    @NotNull(message = "Balence cannot null")
-    private Double balance;
+    private Map<Long,Double> accountDetails;
 
     @Override
     public String toString() {
-        String message="CustomerName --> {0} | AccountNumber --> {1} | CurrentBalance --> {2}";
-        return java.text.MessageFormat.format(message,customerName,accountNumber,balance);
+        String message="CustomerName --> {0} | Account Details --> {1}";
+        return java.text.MessageFormat.format(message,customerName,accountDetails);
     }
 }

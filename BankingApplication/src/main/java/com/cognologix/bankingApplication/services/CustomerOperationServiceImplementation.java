@@ -8,6 +8,10 @@ import com.cognologix.bankingApplication.globleObjectLists.DataSoucrce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class CustomerOperationServiceImplementation implements CustomerOperationService {
     @Autowired
@@ -22,18 +26,14 @@ public class CustomerOperationServiceImplementation implements CustomerOperation
     }
 
     @Override
-    public CustomerDto getCustomerById(Integer customerId) {
-        Customer customer=dataSouceForCustomer.getCustomerById(customerId);
-        Account account=dataSoucrce.getById(customerId);
-        CustomerDto customerDto=new CustomerDto();
-        customerDto.setCustomerName(customer.getCustomerName());
-        customerDto.setAccountNumber(account.getAccountNumber());
-        customerDto.setBalance(account.getBalance());
-    return customerDto;
+    public Double getAccountBalance(Long accountNumber) {
+        return dataSoucrce.getCurrentBalance(accountNumber);
     }
 
     @Override
-    public Double getAccountBalance(Integer custumerId) {
-        return dataSoucrce.getCurrentBalance(custumerId);
+    public List<Customer> getAllCustomers() {
+        return dataSouceForCustomer.getAllCustomers();
     }
+
+
 }

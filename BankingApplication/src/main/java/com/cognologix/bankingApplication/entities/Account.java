@@ -28,7 +28,7 @@ public class Account extends Customer {
 
 //    @NotBlank(message = "Account number cannot blank")
     @Size(min = 10, max = 12, message = "Account number should be 10-12 character")
-    private String accountNumber;
+    private Long accountNumber;
 
 //    @NotNull(message = "Balence cannot null")
     private Double balance;
