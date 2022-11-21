@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class DuplicateCustomerIDExceptionHandler {
-    @ExceptionHandler(DuplicateCustomerIDException.class)
-    public ResponseEntity<String> handleDuplicateCustomerIDException(Exception exception){
-        return new ResponseEntity<String>("Exception : "+exception.getMessage(), HttpStatus.BAD_REQUEST);
+public class AccountAlreadyExistExceptionHandler {
+
+    @ExceptionHandler(value = AccountAlreadyExistException.class)
+    public ResponseEntity<String> handleAccountAlreadyExistException(Exception exception){
+        return new ResponseEntity<>("Exception : "+exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

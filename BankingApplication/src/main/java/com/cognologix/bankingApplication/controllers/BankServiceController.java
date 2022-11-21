@@ -1,7 +1,6 @@
 package com.cognologix.bankingApplication.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cognologix.bankingApplication.dto.AccountDto;
 import com.cognologix.bankingApplication.entities.Account;
@@ -60,8 +59,7 @@ public class BankServiceController {
     @GetMapping("/getAllByCustomerID/{customerID}")
     public ResponseEntity<?> getAllAccounts(@PathVariable Integer customerID) {
         List<Account> accounts = bankOperationsSevice.getAllAccountsForCustomers(customerID);
-        return new ResponseEntity<List<Account>>
-                (accounts, HttpStatus.OK);
+        return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
     }
 
 

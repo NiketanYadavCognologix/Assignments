@@ -18,13 +18,12 @@ public class DataSouceForCustomer {
 
     //method save and return customer
     public Customer saveCustomer(Customer customer) {
-        Integer idOfCustomer = customer.getCustomerId();
-      List<Customer> matchingCustomers =  customers.stream()
-              .filter(avialableCustomer -> avialableCustomer.getCustomerId()==customer.getCustomerId())
-              .collect(Collectors.toList());
-        if(matchingCustomers.size()==0) {
+        List<Customer> matchingCustomers = customers.stream()
+                .filter(avialableCustomer -> avialableCustomer.getCustomerId() == customer.getCustomerId())
+                .collect(Collectors.toList());
+        if (matchingCustomers.size() == 0) {
             customers.add(customer);
-        }else{
+        } else {
             throw new DuplicateCustomerIDException("Given Id customer is already exist...");
         }
         return customer;

@@ -2,7 +2,6 @@ package com.cognologix.bankingApplication.controllers;
 
 import com.cognologix.bankingApplication.entities.Customer;
 import com.cognologix.bankingApplication.services.CustomerOperationService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ public class CustomerServiceController {
     //customer related operations
     @Autowired
     CustomerOperationService customerOperationService;
-    JSONObject resultObject;
 
     //create and return created customer by giving parameter to customer
     @PostMapping("/save")
