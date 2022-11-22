@@ -75,9 +75,10 @@ public class DataSoucrce {
 
     //generate account number for new customer
     public Long generateAccountNumber() {
-        Random random = new Random();
-        String accountNumberInString = String.valueOf(Math.round(random.nextFloat() * Math.pow(10, 12)));
-        Long accountNumber = Long.parseLong(accountNumberInString);
+//        Random random = new Random();
+//        String accountNumberInString = String.valueOf(Math.round(random.nextFloat() * Math.pow(10, 12)));
+        Long accountNumber = Long.valueOf(1000+accounts.size());
+//        Long accountNumber = Long.parseLong(accountNumberInString);
         return accountNumber;
     }
 

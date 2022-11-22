@@ -6,6 +6,7 @@ import com.cognologix.bankingApplication.entities.Customer;
 import com.cognologix.bankingApplication.globleObjectLists.DataSouceForCustomer;
 import com.cognologix.bankingApplication.globleObjectLists.DataSoucrce;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

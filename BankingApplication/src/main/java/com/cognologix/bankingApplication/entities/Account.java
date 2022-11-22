@@ -36,25 +36,4 @@ public class Account {
 
     private Customer customer;
 //    @NotBlank(message = "Customer cannot blank")
-//    private Integer customerId;
-//
-//    private String customerName;
-//
-//    //	@NotEmpty(message = "Date of birth cannot blank")
-//    private String dateOfBirth;
-//
-//    //	@NotEmpty(message = "Adhar number cannot blank")
-////	@Size(min = 12, max = 12, message = "Adhar number should be 12 character")
-//    private String adharNumber;
-//
-//    //	@NotEmpty(message = "PAN number cannot blank")
-//    private String panCardNumber;
-//
-//    //	@Email(message = "Email id cannot blank")
-//    private String emailId;
-//
-//    //	@NotEmpty(message = "Gender cannot blank")
-//    private String gender;
-
-
 }

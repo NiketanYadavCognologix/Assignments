@@ -25,7 +25,7 @@ public class BankServiceController {
     JSONObject resultSet;
 
     //creating new account by givng account DTO
-    @PostMapping("/create")
+    @PostMapping("/createAccount")
     public ResponseEntity<Account> createNewAccount(@Valid @RequestBody AccountDto accountDto) {
         Account createdAccount = bankOperationsSevice.saveObject(accountDto);
         return new ResponseEntity<>(createdAccount, HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class BankServiceController {
     }
 
     //deleteing given id customer
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deleteCustomerById")
     public ResponseEntity<?> deleteCustomerById(@PathParam(value = "id") Integer id) {
         List<Account> deletedAccounts = bankOperationsSevice.deleteCustomer(id);
         resultSet = new JSONObject();

@@ -4,6 +4,7 @@ import com.cognologix.bankingApplication.dto.AccountDto;
 import com.cognologix.bankingApplication.entities.Account;
 import com.cognologix.bankingApplication.globleObjectLists.DataSoucrce;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

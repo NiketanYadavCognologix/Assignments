@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication//(exclude={DataSourceAutoConfiguration.class})
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-
 public class BankingApplication {
 
 	public static void main(String[] args) {

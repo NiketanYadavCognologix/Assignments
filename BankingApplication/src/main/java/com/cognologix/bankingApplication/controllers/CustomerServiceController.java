@@ -19,14 +19,14 @@ public class CustomerServiceController {
     CustomerOperationService customerOperationService;
 
     //create and return created customer by giving parameter to customer
-    @PostMapping("/save")
+    @PostMapping("/createCustomer")
     public ResponseEntity<Customer> createNewAccount(@RequestBody Customer customer) {
         Customer createdCustomer = customerOperationService.createNewCustomer(customer);
         return new ResponseEntity<Customer>(createdCustomer, HttpStatus.CREATED);
     }
 
     //checking balance by giving account number
-    @GetMapping("/balance")
+    @GetMapping("/getBalance")
     public ResponseEntity<String> checkBalence(@PathParam(value = "accountNumber") Long accountNumber){
         Double currentBalance=customerOperationService.getAccountBalance(accountNumber);
         return new ResponseEntity<String>("Current balance is ---> "+currentBalance,HttpStatus.OK);
