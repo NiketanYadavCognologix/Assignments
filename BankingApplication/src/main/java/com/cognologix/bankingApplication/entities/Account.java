@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 //@Entity
 @XmlRootElement
-public class Account extends Customer {
+public class Account {
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accountID;
@@ -33,7 +33,28 @@ public class Account extends Customer {
 //    @NotNull(message = "Balence cannot null")
     private Double balance;
 
+
+    private Customer customer;
 //    @NotBlank(message = "Customer cannot blank")
-    private Integer customerId;
+//    private Integer customerId;
+//
+//    private String customerName;
+//
+//    //	@NotEmpty(message = "Date of birth cannot blank")
+//    private String dateOfBirth;
+//
+//    //	@NotEmpty(message = "Adhar number cannot blank")
+////	@Size(min = 12, max = 12, message = "Adhar number should be 12 character")
+//    private String adharNumber;
+//
+//    //	@NotEmpty(message = "PAN number cannot blank")
+//    private String panCardNumber;
+//
+//    //	@Email(message = "Email id cannot blank")
+//    private String emailId;
+//
+//    //	@NotEmpty(message = "Gender cannot blank")
+//    private String gender;
+
 
 }
